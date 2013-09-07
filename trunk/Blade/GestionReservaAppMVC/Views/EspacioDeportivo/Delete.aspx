@@ -10,7 +10,7 @@
 
     <h3>¿Esta seguro que desea eliminar el espacio deportivo?</h3>
     <fieldset>
-        <legend>Fields</legend>
+        <legend>Campos</legend>
         
         <div class="display-label">Codigo</div>
         <div class="display-field"><%: Model.Codigo %></div>

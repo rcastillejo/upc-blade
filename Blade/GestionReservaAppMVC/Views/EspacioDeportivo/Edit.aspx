@@ -18,7 +18,7 @@
                 <%: Html.LabelFor(model => model.Codigo) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Codigo) %>
+                <%: Html.TextBoxFor(model => model.Codigo, new Dictionary<string, object>() { { "readonly", "true" } })%>
                 <%: Html.ValidationMessageFor(model => model.Codigo) %>
             </div>
             

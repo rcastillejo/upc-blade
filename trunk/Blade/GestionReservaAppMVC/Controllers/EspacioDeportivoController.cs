@@ -94,7 +94,15 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Create()
         {
             Session["Mensaje"] = "";
-            return View();
+            if (Session["sedes"] == null)
+            {
+                Session["Mensaje"] = "No existe sedes disponibles";
+                return RedirectToAction("Index");
+            }
+            else {
+                return View();
+            }
+            
         } 
 
         //
@@ -130,8 +138,16 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Edit(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = obtenerEspacioDeportivo(id);
-            return View(model);
+            if (Session["sedes"] == null)
+            {
+                Session["Mensaje"] = "No existe sedes disponibles";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                EspacioDeportivo model = obtenerEspacioDeportivo(id);
+                return View(model);
+            }
         }
 
         //

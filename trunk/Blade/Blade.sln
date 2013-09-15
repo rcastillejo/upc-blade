@@ -2,11 +2,37 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionReservaAppMVC", "GestionReservaAppMVC\GestionReservaAppMVC.csproj", "{DC65917B-69A0-45F7-9BCD-A5AA8482E6BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{424ED702-4478-423B-84D4-35B11FD46142} = {424ED702-4478-423B-84D4-35B11FD46142}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspacioDeportivoServices", "EspacioDeportivoServices\EspacioDeportivoServices.csproj", "{424ED702-4478-423B-84D4-35B11FD46142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEspacioDeportivoService", "TestEspacioDeportivoService\TestEspacioDeportivoService.csproj", "{FD1C3233-E773-47B4-9C68-BFB468CF093A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{424ED702-4478-423B-84D4-35B11FD46142} = {424ED702-4478-423B-84D4-35B11FD46142}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0F9EDAD-9554-4044-AE74-F830C4D3BE72}"
+	ProjectSection(SolutionItems) = preProject
+		Blade.vsmdi = Blade.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Librerias", "Librerias", "{36232017-E89E-4C55-81C1-CA2BFAA0A655}"
+	ProjectSection(SolutionItems) = preProject
+		Librerias\Iesi.Collections.dll = Librerias\Iesi.Collections.dll
+		Librerias\NHibernate.dll = Librerias\NHibernate.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Blade.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +43,14 @@ Global
 		{DC65917B-69A0-45F7-9BCD-A5AA8482E6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC65917B-69A0-45F7-9BCD-A5AA8482E6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC65917B-69A0-45F7-9BCD-A5AA8482E6BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424ED702-4478-423B-84D4-35B11FD46142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424ED702-4478-423B-84D4-35B11FD46142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424ED702-4478-423B-84D4-35B11FD46142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424ED702-4478-423B-84D4-35B11FD46142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

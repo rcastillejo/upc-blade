@@ -10,5 +10,6 @@ namespace GestionReservaAppMVC.Models
         public int Codigo { get; set; }
         public String Nombre { get; set; }
         public Sede Sede { get; set; }
+        public String apellido { get; set; }
     }
 }

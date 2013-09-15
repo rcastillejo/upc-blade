@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="EspacioDeportivoServices"
+                   namespace="EspacioDeportivoServices.Dominio"
+                   default-lazy="false">
+  <class name="EspacioDeportivo" table="TB_ESP_DEP">
+    <id name="Codigo" column="cod_esp">
+      <generator class="increment" />
+    </id>
+    <property name="Nombre" column="nom_esp" />
+    <many-to-one name="Sede" column="cod_sede">
+    </many-to-one>
+  </class>
+</hibernate-mapping>

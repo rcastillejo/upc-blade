@@ -15,7 +15,7 @@ namespace GestionReservaAppMVC.Controllers
     [HandleError]
     public class AccountController : Controller
     {
-
+        string slsl;
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 

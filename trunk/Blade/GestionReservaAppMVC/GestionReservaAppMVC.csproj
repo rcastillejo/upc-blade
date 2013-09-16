@@ -14,6 +14,7 @@
     <AssemblyName>GestionReservaAppMVC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,14 +67,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReservaConfirmadaController.cs" />
     <Compile Include="Controllers\EspacioDeportivoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\ReservaConfirmada.cs" />
     <Compile Include="Models\EspacioDeportivo.cs" />
+    <Compile Include="Models\EstadoReserva.cs" />
+    <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\Sede.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +90,8 @@
     <Content Include="Views\EspacioDeportivo\Details.aspx" />
     <Content Include="Views\EspacioDeportivo\Edit.aspx" />
     <Content Include="Views\EspacioDeportivo\Index.aspx" />
+    <Content Include="Views\ReservaConfirmada\Confirmar.aspx" />
+    <Content Include="Views\ReservaConfirmada\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

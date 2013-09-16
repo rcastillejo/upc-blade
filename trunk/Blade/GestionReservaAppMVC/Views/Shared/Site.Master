@@ -22,7 +22,8 @@
             
             <div id="menucontainer">
             
-                <ul id="menu">              
+                <ul id="menu">    
+                <li><%: Html.ActionLink("Confirmar Reserva", "Index", "ReservaConfirmada")%></li>          
                     <li><%: Html.ActionLink("Espacio Deportivo", "Index", "EspacioDeportivo")%></li>
                     <li><%: Html.ActionLink("Página principal", "Index", "Home")%></li>
                     <li><%: Html.ActionLink("Acerca de", "About", "Home")%></li>

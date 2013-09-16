@@ -92,6 +92,8 @@
     <Content Include="Views\EspacioDeportivo\Details.aspx" />
     <Content Include="Views\EspacioDeportivo\Edit.aspx" />
     <Content Include="Views\EspacioDeportivo\Index.aspx" />
+    <Content Include="Views\ReservaCancelada\Cancelar.aspx" />
+    <Content Include="Views\ReservaCancelada\Index.aspx" />
     <Content Include="Views\ReservaConfirmada\Confirmar.aspx" />
     <Content Include="Views\ReservaConfirmada\Index.aspx" />
     <Content Include="Web.config" />
@@ -127,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ReservaCancelada\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

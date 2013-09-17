@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<GestionReservaAppMVC.Models.EspacioDeportivo>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Registro
@@ -15,14 +15,6 @@
             <legend>Campos</legend>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Codigo) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Codigo) %>
-                <%: Html.ValidationMessageFor(model => model.Codigo) %>
-            </div>
-            
-            <div class="editor-label">
                 <%: Html.LabelFor(model => model.Nombre) %>
             </div>
             <div class="editor-field">
@@ -34,7 +26,7 @@
                 <%: Html.LabelFor(model => model.Sede)%>
             </div>
             <div class="editor-field">
-                <%: Html.DropDownListFor(model => model.Sede.Codigo, new SelectList((List<GestionReservaAppMVC.Models.Sede>)Session["sedes"], "Codigo", "Nombre"))%>
+                <%: Html.DropDownListFor(model => model.Sede.Codigo, new SelectList((List<GestionReservaAppMVC.SedeWS.Sede>)Session["sedes"], "Codigo", "Nombre"))%>
                 <%: Html.ValidationMessageFor(model => model.Sede.Codigo) %>
             </div>
 

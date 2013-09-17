@@ -88,12 +88,7 @@
     <Compile Include="Models\Sede.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\EspacioDeportivoWS\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\SedeWS\Reference.cs">
+    <Compile Include="Service References\GestionReservaWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -101,23 +96,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService.disco" />
-    <None Include="Service References\EspacioDeportivoWS\configuration91.svcinfo" />
-    <None Include="Service References\EspacioDeportivoWS\configuration.svcinfo" />
-    <None Include="Service References\EspacioDeportivoWS\GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo.datasource">
+    <None Include="Service References\GestionReservaWS\GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\EspacioDeportivoWS\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\SedeWS\GestionReservaAppMVC.SedeWS.Sede.datasource">
+    <None Include="Service References\GestionReservaWS\GestionReservaAppMVC.GestionReservaWS.Sede.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SedeWS\SedeService.disco" />
-    <None Include="Service References\SedeWS\configuration91.svcinfo" />
-    <None Include="Service References\SedeWS\configuration.svcinfo" />
-    <None Include="Service References\SedeWS\Reference.svcmap">
+    <None Include="Service References\GestionReservaWS\GestionReservaService.disco" />
+    <None Include="Service References\GestionReservaWS\configuration91.svcinfo" />
+    <None Include="Service References\GestionReservaWS\configuration.svcinfo" />
+    <None Include="Service References\GestionReservaWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -163,21 +151,11 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
-    <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService.wsdl" />
-    <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService1.xsd">
+    <None Include="Service References\GestionReservaWS\GestionReservaService.wsdl" />
+    <None Include="Service References\GestionReservaWS\GestionReservaService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SedeWS\SedeService.wsdl" />
-    <None Include="Service References\SedeWS\SedeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SedeWS\SedeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SedeWS\SedeService2.xsd">
+    <None Include="Service References\GestionReservaWS\GestionReservaService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -188,11 +166,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\EspacioDeportivoWS\" />
-    <WCFMetadataStorage Include="Service References\SedeWS\" />
+    <WCFMetadataStorage Include="Service References\GestionReservaWS\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService.xsd">
+    <None Include="Service References\GestionReservaWS\GestionReservaService.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GestionReservaAppMVC.EspacioDeportivoWS {
+namespace GestionReservaAppMVC.GestionReservaWS {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,7 +29,7 @@ namespace GestionReservaAppMVC.EspacioDeportivoWS {
         private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GestionReservaAppMVC.EspacioDeportivoWS.Sede SedeField;
+        private GestionReservaAppMVC.GestionReservaWS.Sede SedeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,7 +68,7 @@ namespace GestionReservaAppMVC.EspacioDeportivoWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GestionReservaAppMVC.EspacioDeportivoWS.Sede Sede {
+        public GestionReservaAppMVC.GestionReservaWS.Sede Sede {
             get {
                 return this.SedeField;
             }
@@ -152,70 +152,77 @@ namespace GestionReservaAppMVC.EspacioDeportivoWS {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EspacioDeportivoWS.IEspacioDeportivoService")]
-    public interface IEspacioDeportivoService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GestionReservaWS.IGestionReservaService")]
+    public interface IGestionReservaService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/obtener", ReplyAction="http://tempuri.org/IEspacioDeportivoService/obtenerResponse")]
-        GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo obtener(int Codigo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/obtenerEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/obtenerEspacioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo obtenerEspacio(int codigo);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/lista", ReplyAction="http://tempuri.org/IEspacioDeportivoService/listaResponse")]
-        GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo[] lista();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/listarEspacioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo[] listarEspacio();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/crear", ReplyAction="http://tempuri.org/IEspacioDeportivoService/crearResponse")]
-        GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo crear(string nombre, int sede);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/crearEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/crearEspacioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo crearEspacio(string nombre, int sede);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/actualizar", ReplyAction="http://tempuri.org/IEspacioDeportivoService/actualizarResponse")]
-        GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo actualizar(int codigo, string nombre, int sede);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/actualizarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/actualizarEspacioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/eliminar", ReplyAction="http://tempuri.org/IEspacioDeportivoService/eliminarResponse")]
-        void eliminar(int Codigo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/eliminarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/eliminarEspacioResponse")]
+        void eliminarEspacio(int Codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarSede", ReplyAction="http://tempuri.org/IGestionReservaService/listarSedeResponse")]
+        GestionReservaAppMVC.GestionReservaWS.Sede[] listarSede();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IEspacioDeportivoServiceChannel : GestionReservaAppMVC.EspacioDeportivoWS.IEspacioDeportivoService, System.ServiceModel.IClientChannel {
+    public interface IGestionReservaServiceChannel : GestionReservaAppMVC.GestionReservaWS.IGestionReservaService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class EspacioDeportivoServiceClient : System.ServiceModel.ClientBase<GestionReservaAppMVC.EspacioDeportivoWS.IEspacioDeportivoService>, GestionReservaAppMVC.EspacioDeportivoWS.IEspacioDeportivoService {
+    public partial class GestionReservaServiceClient : System.ServiceModel.ClientBase<GestionReservaAppMVC.GestionReservaWS.IGestionReservaService>, GestionReservaAppMVC.GestionReservaWS.IGestionReservaService {
         
-        public EspacioDeportivoServiceClient() {
+        public GestionReservaServiceClient() {
         }
         
-        public EspacioDeportivoServiceClient(string endpointConfigurationName) : 
+        public GestionReservaServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public EspacioDeportivoServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public GestionReservaServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EspacioDeportivoServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GestionReservaServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EspacioDeportivoServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GestionReservaServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo obtener(int Codigo) {
-            return base.Channel.obtener(Codigo);
+        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo obtenerEspacio(int codigo) {
+            return base.Channel.obtenerEspacio(codigo);
         }
         
-        public GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo[] lista() {
-            return base.Channel.lista();
+        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo[] listarEspacio() {
+            return base.Channel.listarEspacio();
         }
         
-        public GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo crear(string nombre, int sede) {
-            return base.Channel.crear(nombre, sede);
+        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo crearEspacio(string nombre, int sede) {
+            return base.Channel.crearEspacio(nombre, sede);
         }
         
-        public GestionReservaAppMVC.EspacioDeportivoWS.EspacioDeportivo actualizar(int codigo, string nombre, int sede) {
-            return base.Channel.actualizar(codigo, nombre, sede);
+        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede) {
+            return base.Channel.actualizarEspacio(codigo, nombre, sede);
         }
         
-        public void eliminar(int Codigo) {
-            base.Channel.eliminar(Codigo);
+        public void eliminarEspacio(int Codigo) {
+            base.Channel.eliminarEspacio(Codigo);
+        }
+        
+        public GestionReservaAppMVC.GestionReservaWS.Sede[] listarSede() {
+            return base.Channel.listarSede();
         }
     }
 }

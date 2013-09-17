@@ -9,6 +9,8 @@ namespace GestionReservaAppMVC.Controllers
 {
     public class HorarioDeportivoController : Controller
     {
+        EspacioDeportivoWS.EspacioDeportivoServiceClient espacioProxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
+
         //*** Creo las sedes ***************************************************************************************
         private List<Sede> Sedesparahorario()
         {
@@ -53,7 +55,8 @@ namespace GestionReservaAppMVC.Controllers
             
             return Horarios;
         }
-
+        
+        // *** Creo el detalle de horario   ***********************************************************
         private List<DetalleHorario> CrearDetalleHorario()
         {
             List<Horario> horariosx = CrearHorario();
@@ -75,7 +78,7 @@ namespace GestionReservaAppMVC.Controllers
         }
 
 
-        private Horario ObtenerHorario(int codigo)//(int CodigoEspacio, int codsede)
+        private Horario ObtenerHorario(int codigo)
         {
             List<Horario> Horarios = (List<Horario>)Session["Horarios"];
             Horario model=Horarios.Single(delegate(Horario horario) {
@@ -86,8 +89,7 @@ namespace GestionReservaAppMVC.Controllers
             return model;
         }
 
-        
-        //private DetalleHorario
+        // ***  obtengo el detalle de cada horario *****************************************************
           private List<DetalleHorario>  ObtenerdetalleHorario(int codigo)//(int CodigoEspacio, int codsede)
         {
             List<DetalleHorario> detHorarios = CrearDetalleHorario();//List<DetalleHorario> detHorarios =(List<DetalleHorario>)Session["detHorarios"];
@@ -112,13 +114,12 @@ namespace GestionReservaAppMVC.Controllers
             //DetalleHorario x = det.ConvertAll(DetalleHorario xx);
              return det;
         }
-
-
+        
 
         // GET: /HorarioDeportivo/
         // ***** Muestra pagina con listado de Horarios *****
         public ActionResult Index()
-        {
+          {
             if (Session["Horarios"] == null)
                 Session["Horarios"] = CrearHorario();
             if (Session["detHorarios"] == null)
@@ -129,21 +130,33 @@ namespace GestionReservaAppMVC.Controllers
 
 
         // GET: /HorarioDeportivo/Details/5
-        // ***** Muestra pagina con datos de un asesor *****
+        // ***** Muestra pagina con detalle de un horario de espacio y sede *****
         public ActionResult Details(int Codigo)//(int CodigoEspacio, int codsede)
         {
             Session["Mensaje"] = "";
             Session["detHorarios"] = ObtenerdetalleHorario(Codigo);
-            //DetalleHorario model = ObtenerdetalleHorario(Codigo);
             List<DetalleHorario> modell = (List<DetalleHorario>)Session["detHorarios"];
             return View(modell);
         }
 
+        
+        
         // GET: /HorarioDeportivo/Create
         //******* Muestra pagina para ingresar datos de creacion *******
         public ActionResult Create()
         {
-            return View();
+          /*  Session["Mensaje"] = "";
+            if (Session["espacio"] == null)
+            {
+                Session["Mensaje"] = "No existe sedes disponibles";
+                return RedirectToAction("Index");
+            }
+            else
+            {*/
+            if (Session["espacios"] == null)
+                Session["espacios"] = espacioProxy.lista().ToList();
+                return View();
+            //}
         } 
 
         // POST: /HorarioDeportivo/Create
@@ -153,29 +166,24 @@ namespace GestionReservaAppMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 List<Horario> Horarios=(List<Horario>)Session["Horarios"];
                 Horarios.Add(new Horario()
                 {
-                   EspacioDeportivo= new EspacioDeportivo()
-                   {
-                       Codigo =int.Parse(collection["EspacioDeportivo.Codigo"]),
-                       Nombre =collection["Nombre"],
-                       Sede =new Sede()
+                       Codigo =int.Parse(collection["Codigo"]),//(collection["EspacioDeportivo.Codigo"]),
+                       EspacioDeportivo = new EspacioDeportivo()
                        {
-                           Codigo=int.Parse(collection["Sede.Codigo"]),
-                           Nombre=collection["Sede.Nombre"]
-                       }
-                   },
-
-                    Sede =new Sede()
+                           Codigo = int.Parse(collection["EspacioDeportivo.Codigo"]),
+                           Nombre=collection["EspacioDeportivo.Nombre"],
+                       },
+                       
+                   Sede =new Sede()
                        {
                            Codigo=int.Parse(collection["Sede.Codigo"]),
                            Nombre=collection["Sede.Nombre"]
                        },
                 //Dia=collection["Dia"],
-               // Horainicio=collection["Horainicio"],
-               // HoraFin=collection["HoraFin"]
+                //Horainicio=collection["Horainicio"],
+                //HoraFin=collection["HoraFin"]
                 });
                 return RedirectToAction("Index");           
               }

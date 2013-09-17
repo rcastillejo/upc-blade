@@ -21,7 +21,7 @@
                 Hora de Inicio
             </th>
             <th>
-                Hora de Fin
+                Hora de Fin 
             </th>
         </tr>
 

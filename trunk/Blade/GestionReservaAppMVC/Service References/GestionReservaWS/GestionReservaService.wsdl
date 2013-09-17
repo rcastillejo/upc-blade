@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GestionReservaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGestionReservaService_obtenerEspacio_InputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerEspacio" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_obtenerEspacio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerEspacioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarEspacio_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarEspacio" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarEspacio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarEspacioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_crearEspacio_InputMessage">
+    <wsdl:part name="parameters" element="tns:crearEspacio" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_crearEspacio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:crearEspacioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_actualizarEspacio_InputMessage">
+    <wsdl:part name="parameters" element="tns:actualizarEspacio" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_actualizarEspacio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:actualizarEspacioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_eliminarEspacio_InputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarEspacio" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_eliminarEspacio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:eliminarEspacioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarSede_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarSede" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarSede_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarSedeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGestionReservaService">
+    <wsdl:operation name="obtenerEspacio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/obtenerEspacio" message="tns:IGestionReservaService_obtenerEspacio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/obtenerEspacioResponse" message="tns:IGestionReservaService_obtenerEspacio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarEspacio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/listarEspacio" message="tns:IGestionReservaService_listarEspacio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/listarEspacioResponse" message="tns:IGestionReservaService_listarEspacio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="crearEspacio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/crearEspacio" message="tns:IGestionReservaService_crearEspacio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/crearEspacioResponse" message="tns:IGestionReservaService_crearEspacio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEspacio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/actualizarEspacio" message="tns:IGestionReservaService_actualizarEspacio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/actualizarEspacioResponse" message="tns:IGestionReservaService_actualizarEspacio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="eliminarEspacio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/eliminarEspacio" message="tns:IGestionReservaService_eliminarEspacio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/eliminarEspacioResponse" message="tns:IGestionReservaService_eliminarEspacio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarSede">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/listarSede" message="tns:IGestionReservaService_listarSede_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/listarSedeResponse" message="tns:IGestionReservaService_listarSede_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IGestionReservaService" type="tns:IGestionReservaService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="obtenerEspacio">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/obtenerEspacio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarEspacio">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/listarEspacio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearEspacio">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/crearEspacio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEspacio">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/actualizarEspacio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarEspacio">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/eliminarEspacio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarSede">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/listarSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GestionReservaService">
+    <wsdl:port name="BasicHttpBinding_IGestionReservaService" binding="tns:BasicHttpBinding_IGestionReservaService">
+      <soap:address location="http://localhost:38930/GestionReservaService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -21,4 +21,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfEspacioDeportivo" nillable="true" type="tns:ArrayOfEspacioDeportivo" />
+  <xs:complexType name="ArrayOfSede">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sede" nillable="true" type="tns:Sede" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSede" nillable="true" type="tns:ArrayOfSede" />
 </xs:schema>

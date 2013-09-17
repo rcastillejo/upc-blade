@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GestionReservaAppMVC.EspacioDeportivoWS;
+using GestionReservaAppMVC.GestionReservaWS;
 
 namespace GestionReservaAppMVC.Controllers
 {
     public class EspacioDeportivoController : Controller
     {
-        EspacioDeportivoWS.EspacioDeportivoServiceClient espacioProxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
-        SedeWS.SedeServiceClient sedeProxy = new SedeWS.SedeServiceClient();
+        GestionReservaWS.GestionReservaServiceClient proxy = new GestionReservaWS.GestionReservaServiceClient();
 
         //
         // GET: /EspacioDeportivo/
@@ -18,9 +17,9 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Index()
         {
             if (Session["espacios"] == null)
-                Session["espacios"] = espacioProxy.lista().ToList();
+                Session["espacios"] = proxy.listarEspacio().ToList();
             if (Session["sedes"] == null)
-                Session["sedes"] = sedeProxy.listar().ToList();
+                Session["sedes"] = proxy.listarSede().ToList();
             List<EspacioDeportivo> model = (List<EspacioDeportivo>)Session["espacios"];
             return View(model);
         }
@@ -31,7 +30,7 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Details(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = espacioProxy.obtener(id);
+            EspacioDeportivo model = proxy.obtenerEspacio(id);
 
             return View(model);
         }
@@ -64,8 +63,8 @@ namespace GestionReservaAppMVC.Controllers
                 // TODO: Add insert logic here
                 string nombre = collection["Nombre"];
                 int sedeCodigo = int.Parse(collection["Sede.Codigo"]);
-                EspacioDeportivo espacio = espacioProxy.crear(nombre, sedeCodigo);
-                Session["espacios"] = espacioProxy.lista().ToList();
+                EspacioDeportivo espacio = proxy.crearEspacio(nombre, sedeCodigo);
+                Session["espacios"] = proxy.listarEspacio().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente ("+espacio.Codigo+")";
                 return RedirectToAction("Index");
             }
@@ -89,7 +88,7 @@ namespace GestionReservaAppMVC.Controllers
             }
             else
             {
-                EspacioDeportivo model = espacioProxy.obtener(id);
+                EspacioDeportivo model = proxy.obtenerEspacio(id);
                 if (model == null) {
                     Session["Mensaje"] = "El espacio deportivo no se encuentra disponible";
                     return RedirectToAction("Index");
@@ -109,8 +108,8 @@ namespace GestionReservaAppMVC.Controllers
                 // TODO: Add update logic here
                 string nombre = collection["Nombre"];
                 int sedeCodigo = int.Parse(collection["Sede.Codigo"]);                 
-                EspacioDeportivo model = espacioProxy.actualizar(id, nombre, sedeCodigo);
-                Session["espacios"] = espacioProxy.lista().ToList();
+                EspacioDeportivo model = proxy.actualizarEspacio(id, nombre, sedeCodigo);
+                Session["espacios"] = proxy.listarEspacio().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente (" + model.Codigo + ")";
                 return RedirectToAction("Index");
             }
@@ -127,7 +126,7 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Delete(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = espacioProxy.obtener(id);
+            EspacioDeportivo model = proxy.obtenerEspacio(id);
             return View(model);
         }
 
@@ -140,8 +139,8 @@ namespace GestionReservaAppMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-                espacioProxy.eliminar(id);
-                Session["espacios"] = espacioProxy.lista().ToList();
+                proxy.eliminarEspacio(id);
+                Session["espacios"] = proxy.listarEspacio().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido eliminado exitosamente";
                 return RedirectToAction("Index");
             }

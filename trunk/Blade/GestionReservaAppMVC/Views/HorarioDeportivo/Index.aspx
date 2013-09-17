@@ -20,15 +20,6 @@
             <th>
                 Sede
             </th>
-            <th>
-                Dia
-            </th>
-            <th>
-                Horainicio
-            </th>
-            <th>
-                HoraFin
-            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -47,15 +38,6 @@
             </td>
             <td>
                 <%: item.Sede.Codigo %> - <%: item.Sede.Nombre %>
-            </td>
-            <td>
-                <%: item.Dia %>
-            </td>
-            <td>
-                <%: item.Horainicio %>
-            </td>
-            <td>
-                <%: item.HoraFin %>
             </td>
         </tr>
     

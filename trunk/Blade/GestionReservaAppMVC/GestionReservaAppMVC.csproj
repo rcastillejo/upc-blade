@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReglaEspacioDeportivoController.cs" />
     <Compile Include="Controllers\ReservaCanceladaController.cs" />
     <Compile Include="Controllers\ReservaConfirmadaController.cs" />
     <Compile Include="Controllers\EspacioDeportivoController.cs" />
@@ -78,6 +79,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\ReglaEspacioDeportivo.cs" />
     <Compile Include="Models\ReservaCancelada.cs" />
     <Compile Include="Models\ReservaConfirmada.cs" />
     <Compile Include="Models\EspacioDeportivo.cs" />
@@ -124,6 +126,9 @@
     <Content Include="Views\EspacioDeportivo\Details.aspx" />
     <Content Include="Views\EspacioDeportivo\Edit.aspx" />
     <Content Include="Views\EspacioDeportivo\Index.aspx" />
+    <Content Include="Views\ReglaEspacioDeportivo\Details.aspx" />
+    <Content Include="Views\ReglaEspacioDeportivo\Edit.aspx" />
+    <Content Include="Views\ReglaEspacioDeportivo\Index.aspx" />
     <Content Include="Views\ReservaCancelada\Cancelar.aspx" />
     <Content Include="Views\ReservaCancelada\Index.aspx" />
     <Content Include="Views\ReservaConfirmada\Confirmar.aspx" />

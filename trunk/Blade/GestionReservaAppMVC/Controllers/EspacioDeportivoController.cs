@@ -3,76 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GestionReservaAppMVC.Models;
+using GestionReservaAppMVC.EspacioDeportivoWS;
 
 namespace GestionReservaAppMVC.Controllers
 {
     public class EspacioDeportivoController : Controller
     {
-        private List<Sede> CrearSedes()
-        {
-            Sede lince = new Sede() { Codigo = 1, Nombre = "Lince" };
-            Sede sanIsidro = new Sede() { Codigo = 2, Nombre = "San Isidro" };
-            Sede sanBorja = new Sede() { Codigo = 3, Nombre = "San Borja" };
-
-            List<Sede> sedes = new List<Sede>();
-            sedes.Add(lince);
-            sedes.Add(sanIsidro);
-            sedes.Add(sanBorja);
-
-            return sedes;
-        }
-        
-        private List<EspacioDeportivo> CrearEspacios() 
-        {
-            List<Sede> sedes = CrearSedes();
-            //Sede lince = new Sede() { Codigo = 1, Nombre = "Lince" };
-            //Sede sanIsidro = new Sede() { Codigo = 2, Nombre = "San Isidro" };
-            //Sede sanBorja = new Sede() { Codigo = 3, Nombre = "San Borja" };
-
-            List<EspacioDeportivo> espacios = new List<EspacioDeportivo>();
-            espacios.Add(new EspacioDeportivo() { Codigo = 101, Nombre = "Piscina", Sede = sedes.ElementAt(0) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 102, Nombre = "Cancha Futbol", Sede = sedes.ElementAt(2) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 103, Nombre = "Cancha Tenis", Sede = sedes.ElementAt(0) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 104, Nombre = "Piscina", Sede = sedes.ElementAt(1) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 105, Nombre = "Cancha Basket", Sede = sedes.ElementAt(2) });
-
-            return espacios;
-        }
-
-        private Sede obtenerSede(int codigo)
-        {
-            List<Sede> sedes = (List<Sede>)Session["sedes"];
-            Sede model = sedes.Single(delegate(Sede sede)
-            {
-                if (sede.Codigo == codigo) return true;
-                else return false;
-            });
-
-            return model;
-        }
-
-        private EspacioDeportivo obtenerEspacioDeportivo(int codigo)
-        {
-            List<EspacioDeportivo> espacios = (List<EspacioDeportivo>)Session["espacios"];
-            EspacioDeportivo model = espacios.Single(delegate(EspacioDeportivo espacio){
-                if (espacio.Codigo == codigo) return true;
-                else return false;
-            });
-
-            return model;
-        }
+        EspacioDeportivoWS.EspacioDeportivoServiceClient espacioProxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
+        SedeWS.SedeServiceClient sedeProxy = new SedeWS.SedeServiceClient();
 
         //
         // GET: /EspacioDeportivo/
 
         public ActionResult Index()
         {
-            
             if (Session["espacios"] == null)
-                Session["espacios"] = CrearEspacios();
+                Session["espacios"] = espacioProxy.lista().ToList();
             if (Session["sedes"] == null)
-                Session["sedes"] = CrearSedes();
+                Session["sedes"] = sedeProxy.listar().ToList();
             List<EspacioDeportivo> model = (List<EspacioDeportivo>)Session["espacios"];
             return View(model);
         }
@@ -83,7 +31,7 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Details(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = obtenerEspacioDeportivo(id);
+            EspacioDeportivo model = espacioProxy.obtener(id);
 
             return View(model);
         }
@@ -114,14 +62,10 @@ namespace GestionReservaAppMVC.Controllers
             try
             {
                 // TODO: Add insert logic here
-                List<EspacioDeportivo> espacios = (List<EspacioDeportivo>)Session["espacios"];
-                EspacioDeportivo espacio = new EspacioDeportivo()
-                {
-                    Codigo = int.Parse(collection["Codigo"]),
-                    Nombre = collection["Nombre"],
-                    Sede = obtenerSede(int.Parse(collection["Sede.Codigo"]))
-                };
-                espacios.Add(espacio);
+                string nombre = collection["Nombre"];
+                int sedeCodigo = int.Parse(collection["Sede.Codigo"]);
+                EspacioDeportivo espacio = espacioProxy.crear(nombre, sedeCodigo);
+                Session["espacios"] = espacioProxy.lista().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente ("+espacio.Codigo+")";
                 return RedirectToAction("Index");
             }
@@ -145,7 +89,11 @@ namespace GestionReservaAppMVC.Controllers
             }
             else
             {
-                EspacioDeportivo model = obtenerEspacioDeportivo(id);
+                EspacioDeportivo model = espacioProxy.obtener(id);
+                if (model == null) {
+                    Session["Mensaje"] = "El espacio deportivo no se encuentra disponible";
+                    return RedirectToAction("Index");
+                }
                 return View(model);
             }
         }
@@ -159,10 +107,10 @@ namespace GestionReservaAppMVC.Controllers
             try
             {                
                 // TODO: Add update logic here
-                EspacioDeportivo model = obtenerEspacioDeportivo(id);
-                model.Codigo = int.Parse(collection["Codigo"]);
-                model.Nombre = collection["Nombre"];
-                model.Sede = obtenerSede(int.Parse(collection["Sede.Codigo"]));
+                string nombre = collection["Nombre"];
+                int sedeCodigo = int.Parse(collection["Sede.Codigo"]);                 
+                EspacioDeportivo model = espacioProxy.actualizar(id, nombre, sedeCodigo);
+                Session["espacios"] = espacioProxy.lista().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente (" + model.Codigo + ")";
                 return RedirectToAction("Index");
             }
@@ -179,7 +127,7 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Delete(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = obtenerEspacioDeportivo(id);
+            EspacioDeportivo model = espacioProxy.obtener(id);
             return View(model);
         }
 
@@ -192,8 +140,8 @@ namespace GestionReservaAppMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-                List<EspacioDeportivo> espacios = (List<EspacioDeportivo>)Session["espacios"];
-                espacios.Remove(obtenerEspacioDeportivo(id));
+                espacioProxy.eliminar(id);
+                Session["espacios"] = espacioProxy.lista().ToList();
                 Session["Mensaje"] = "El espacio deportivo ha sido eliminado exitosamente";
                 return RedirectToAction("Index");
             }

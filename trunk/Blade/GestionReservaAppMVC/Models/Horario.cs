@@ -10,8 +10,8 @@ namespace GestionReservaAppMVC.Models
         public int Codigo { get; set; }
         public EspacioDeportivo EspacioDeportivo { get; set; }
         public Sede  Sede { get; set; }
-        public String  Dia { get; set; }
-        public String Horainicio { get; set; }
-        public String HoraFin { get; set; }
+      //  public String  Dia { get; set; }
+       // public String Horainicio { get; set; }
+       // public String HoraFin { get; set; }
      }
 }

@@ -30,8 +30,8 @@ namespace GestionReservaAppMVC.Controllers
             List<Sede> sedesx = Sedesparahorario();
             List<EspacioDeportivo> espacios = new List<EspacioDeportivo>();
             espacios.Add(new EspacioDeportivo() { Codigo = 101, Nombre = "Piscina", Sede = sedesx.ElementAt(0) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 101, Nombre = "Cancha Futbol", Sede = sedesx.ElementAt(2) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 103, Nombre = "Cancha Tenis", Sede = sedesx.ElementAt(0) });
+            espacios.Add(new EspacioDeportivo() { Codigo = 102, Nombre = "Cancha Futbol", Sede = sedesx.ElementAt(0) });
+            espacios.Add(new EspacioDeportivo() { Codigo = 103, Nombre = "Cancha Tenis", Sede = sedesx.ElementAt(1) });
             espacios.Add(new EspacioDeportivo() { Codigo = 104, Nombre = "Piscina", Sede = sedesx.ElementAt(1) });
             espacios.Add(new EspacioDeportivo() { Codigo = 105, Nombre = "Cancha Basket", Sede = sedesx.ElementAt(2) });
 
@@ -44,22 +44,37 @@ namespace GestionReservaAppMVC.Controllers
         private List<Horario> CrearHorario()
         {
             List<EspacioDeportivo> Espaciosx = Espaciosparahorarios();
-           /* Sede lince = new Sede() { Codigo = 1, Nombre = "Lince" };
-            Sede sanIsidro = new Sede() { Codigo = 2, Nombre = "San Isidro" };
-            Sede sanBorja = new Sede() { Codigo = 3, Nombre = "San Borja" };
-
-            EspacioDeportivo Piscina= new EspacioDeportivo() { Codigo = 101, Nombre = "Piscina", Sede=lince };
-            EspacioDeportivo CanchaFutbol = new EspacioDeportivo() { Codigo = 102, Nombre = "Cancha Futbol", Sede = sanIsidro};
-            EspacioDeportivo CanchaTenis = new EspacioDeportivo() { Codigo = 103, Nombre = "Cancha Tenis", Sede = sanBorja};*/
-
+ 
             List<Horario> Horarios = new List<Horario>();
-            Horarios.Add(new Horario() { Codigo = 111, EspacioDeportivo = Espaciosx.ElementAt(0), Sede = Espaciosx.ElementAt(0).Sede , Dia = "Lunes", Horainicio = "08:14", HoraFin = "15:15" });
-            Horarios.Add(new Horario() { Codigo = 112, EspacioDeportivo = Espaciosx.ElementAt(0), Sede = Espaciosx.ElementAt(0).Sede, Dia = "Martes", Horainicio = "08:14", HoraFin = "15:15" });
-            Horarios.Add(new Horario() { Codigo = 113, EspacioDeportivo = Espaciosx.ElementAt(1), Sede = Espaciosx.ElementAt(1).Sede, Dia = "Lunes", Horainicio = "09:00", HoraFin = "12:15" });
-            Horarios.Add(new Horario() { Codigo = 114, EspacioDeportivo = Espaciosx.ElementAt(2), Sede = Espaciosx.ElementAt(2).Sede, Dia = "Lunes", Horainicio = "08:14", HoraFin = "18:00" });
+            Horarios.Add(new Horario() { Codigo = 11, EspacioDeportivo = Espaciosx.ElementAt(0), Sede = Espaciosx.ElementAt(0).Sede  });// , Dia = "Lunes", Horainicio = "08:14", HoraFin = "15:15" });
+            Horarios.Add(new Horario() { Codigo = 12, EspacioDeportivo = Espaciosx.ElementAt(1), Sede = Espaciosx.ElementAt(1).Sede  });//, Dia = "Martes", Horainicio = "08:14", HoraFin = "15:15" });
+            Horarios.Add(new Horario() { Codigo = 13, EspacioDeportivo = Espaciosx.ElementAt(2), Sede = Espaciosx.ElementAt(2).Sede  });//, Dia = "Lunes", Horainicio = "09:00", HoraFin = "12:15" });
+            Horarios.Add(new Horario() { Codigo = 14, EspacioDeportivo = Espaciosx.ElementAt(3), Sede = Espaciosx.ElementAt(3).Sede  });//, Dia = "Lunes", Horainicio = "08:14", HoraFin = "18:00" });
             
             return Horarios;
         }
+
+        private List<DetalleHorario> CrearDetalleHorario()
+        {
+            List<Horario> horariosx = CrearHorario();
+            List<DetalleHorario> DetHorarios = new List<DetalleHorario>();
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(0), Dia = "Lunes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(0), Dia = "Martes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(0), Dia = "Miercoles", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(0), Dia = "Jueves", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(0), Dia = "Viernes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(1), Dia = "Lunes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(1), Dia = "Martes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(1), Dia = "Miercoles", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(2), Dia = "Lunes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(2), Dia = "Martes", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(2), Dia = "Miercoles", Horainicio = "08:14", HoraFin = "15:15" });
+            DetHorarios.Add(new DetalleHorario() { Horario = horariosx.ElementAt(2), Dia = "Jueves", Horainicio = "08:14", HoraFin = "15:15" });
+            return DetHorarios;
+            
+        }
+
+
         private Horario ObtenerHorario(int codigo)//(int CodigoEspacio, int codsede)
         {
             List<Horario> Horarios = (List<Horario>)Session["Horarios"];
@@ -70,14 +85,44 @@ namespace GestionReservaAppMVC.Controllers
             });
             return model;
         }
+
         
-        
+        //private DetalleHorario
+          private List<DetalleHorario>  ObtenerdetalleHorario(int codigo)//(int CodigoEspacio, int codsede)
+        {
+            List<DetalleHorario> detHorarios = CrearDetalleHorario();//List<DetalleHorario> detHorarios =(List<DetalleHorario>)Session["detHorarios"];
+
+           List<DetalleHorario> det = new List<DetalleHorario>();
+//           foreach (DetalleHorario dx in detHorarios)
+               for (int index = 0; index < detHorarios.Count; index++)
+
+             {
+           // DetalleHorario model = detHorarios.Single(delegate(DetalleHorario detallehorario)
+               
+                //{
+                    if (detHorarios.ElementAt(index).Horario.Codigo == codigo)
+                    {
+                    det.Add(new DetalleHorario() { Horario = detHorarios.ElementAt(index).Horario, Dia = detHorarios.ElementAt(index).Dia, Horainicio = detHorarios.ElementAt(index).Horainicio, HoraFin = detHorarios.ElementAt(index).HoraFin });
+                   // return true;
+                    }
+                    //else return false;
+                //}
+              //);
+            } 
+            //DetalleHorario x = det.ConvertAll(DetalleHorario xx);
+             return det;
+        }
+
+
+
         // GET: /HorarioDeportivo/
         // ***** Muestra pagina con listado de Horarios *****
         public ActionResult Index()
         {
             if (Session["Horarios"] == null)
                 Session["Horarios"] = CrearHorario();
+            if (Session["detHorarios"] == null)
+                Session["detHorarios"] = CrearDetalleHorario();
             List<Horario> model = (List<Horario>)Session["Horarios"];
             return View(model);
         }
@@ -88,8 +133,10 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Details(int Codigo)//(int CodigoEspacio, int codsede)
         {
             Session["Mensaje"] = "";
-            Horario model = ObtenerHorario(Codigo);
-            return View(model);
+            Session["detHorarios"] = ObtenerdetalleHorario(Codigo);
+            //DetalleHorario model = ObtenerdetalleHorario(Codigo);
+            List<DetalleHorario> modell = (List<DetalleHorario>)Session["detHorarios"];
+            return View(modell);
         }
 
         // GET: /HorarioDeportivo/Create
@@ -126,9 +173,9 @@ namespace GestionReservaAppMVC.Controllers
                            Codigo=int.Parse(collection["Sede.Codigo"]),
                            Nombre=collection["Sede.Nombre"]
                        },
-                Dia=collection["Dia"],
-                Horainicio=collection["Horainicio"],
-                HoraFin=collection["HoraFin"]
+                //Dia=collection["Dia"],
+               // Horainicio=collection["Horainicio"],
+               // HoraFin=collection["HoraFin"]
                 });
                 return RedirectToAction("Index");           
               }
@@ -155,9 +202,9 @@ namespace GestionReservaAppMVC.Controllers
             {
                 // TODO: Add update logic here
                 Horario model = ObtenerHorario(codigo);//(codespacio, codsede);
-                model.Dia = collection["Dia"];
-                model.Horainicio = collection["Horainicio"];
-                model.HoraFin = collection["HoraFin"];
+               // model.Dia = collection["Dia"];
+                //model.Horainicio = collection["Horainicio"];
+               // model.HoraFin = collection["HoraFin"];
                 return RedirectToAction("Index");
             }
             catch
@@ -192,5 +239,7 @@ namespace GestionReservaAppMVC.Controllers
                 return View();
             }
         }
+
+       // public Converter<DetalleHorario, TOutput> converter { get; set; }
     }
 }

@@ -54,6 +54,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SedeWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +79,23 @@
     <None Include="Service References\EspacioDeportivoWS\TestEspacioDeportivoService.EspacioDeportivoWS.EspacioDeportivo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\SedeWS\SedeService.wsdl" />
+    <None Include="Service References\SedeWS\SedeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SedeWS\SedeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SedeWS\SedeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SedeWS\TestEspacioDeportivoService.SedeWS.Sede.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\EspacioDeportivoWS\" />
+    <WCFMetadataStorage Include="Service References\SedeWS\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EspacioDeportivoWS\EspacioDeportivoService.disco" />
@@ -89,6 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\EspacioDeportivoWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SedeWS\SedeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SedeWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SedeWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SedeWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -16,5 +16,19 @@ namespace TestEspacioDeportivoService
             EspacioDeportivoWS.EspacioDeportivo espacio = proxy.obtener(1);
             Assert.IsNotNull(espacio);
         }
+        [TestMethod]
+        public void TestListar()
+        {
+            EspacioDeportivoWS.EspacioDeportivoServiceClient proxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
+            List<EspacioDeportivoWS.EspacioDeportivo> espacios = proxy.lista().ToList();
+            Assert.IsNotNull(espacios);
+        }
+        [TestMethod]
+        public void TestListarSede()
+        {
+            SedeWS.SedeServiceClient proxy = new SedeWS.SedeServiceClient();
+            List<SedeWS.Sede> sedes = proxy.listar().ToList();
+            Assert.IsNotNull(sedes);
+        }
     }
 }

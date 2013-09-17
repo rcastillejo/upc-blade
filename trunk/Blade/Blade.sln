@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionReservaAppMVC", "GestionReservaAppMVC\GestionReservaAppMVC.csproj", "{DC65917B-69A0-45F7-9BCD-A5AA8482E6BD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{424ED702-4478-423B-84D4-35B11FD46142} = {424ED702-4478-423B-84D4-35B11FD46142}
+		{61B63A66-40FD-412A-92AA-4BFEC90991B9} = {61B63A66-40FD-412A-92AA-4BFEC90991B9}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EspacioDeportivoServices", "EspacioDeportivoServices\EspacioDeportivoServices.csproj", "{424ED702-4478-423B-84D4-35B11FD46142}"
@@ -24,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Librerias", "Librerias", "{
 	ProjectSection(SolutionItems) = preProject
 		Librerias\Iesi.Collections.dll = Librerias\Iesi.Collections.dll
 		Librerias\NHibernate.dll = Librerias\NHibernate.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionReservaServices", "GestionReservaServices\GestionReservaServices.csproj", "{61B63A66-40FD-412A-92AA-4BFEC90991B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{424ED702-4478-423B-84D4-35B11FD46142} = {424ED702-4478-423B-84D4-35B11FD46142}
 	EndProjectSection
 EndProject
 Global
@@ -51,6 +57,10 @@ Global
 		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD1C3233-E773-47B4-9C68-BFB468CF093A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

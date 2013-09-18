@@ -29,7 +29,7 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Editar", "Edit", new { Codigo = item.Horario.Codigo })%> |
+                <%: Html.ActionLink("Detalles", "DetailsItem", new { Codigo = item.Horario.Codigo, Dia=item.Dia })%> |
                 <%: Html.ActionLink("Eliminar", "Delete", new { Codigo = item.Horario.Codigo })%>
             </td>
             <td>
@@ -51,8 +51,9 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
-        <%: Html.ActionLink("Back to List", "Index") %>
+    
+    <%-- <%: Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> | --%>
+    <%: Html.ActionLink("Regresar a la lista", "Index") %>
     </p>
 
 </asp:Content>

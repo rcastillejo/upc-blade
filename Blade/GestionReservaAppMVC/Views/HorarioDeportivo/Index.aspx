@@ -26,7 +26,7 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Editar", "Edit", new { Codigo = item.Codigo })%> |
+             <%--   <%: Html.ActionLink("Editar", "Edit", new { Codigo = item.Codigo })%> | --%>
                 <%: Html.ActionLink("Detalles", "Details", new { Codigo = item.Codigo })%> |
                 <%: Html.ActionLink("Eliminar", "Delete", new { Codigo = item.Codigo })%>
             </td>
@@ -46,7 +46,7 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Crear", "Create") %>
+        <%: Html.ActionLink("Crear","")%>  <%-- , "Create") %>  Le quito el Create ya que un no es implementado del todo--%>
     </p>
 
 </asp:Content>

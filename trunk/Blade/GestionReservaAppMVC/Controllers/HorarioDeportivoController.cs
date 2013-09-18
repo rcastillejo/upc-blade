@@ -9,7 +9,7 @@ namespace GestionReservaAppMVC.Controllers
 {
     public class HorarioDeportivoController : Controller
     {
-        EspacioDeportivoWS.EspacioDeportivoServiceClient espacioProxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
+       // EspacioDeportivoWS.EspacioDeportivoServiceClient espacioProxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
 
         //*** Creo las sedes ***************************************************************************************
         private List<Sede> Sedesparahorario()
@@ -82,8 +82,7 @@ namespace GestionReservaAppMVC.Controllers
         {
             List<Horario> Horarios = (List<Horario>)Session["Horarios"];
             Horario model=Horarios.Single(delegate(Horario horario) {
-           // if ((Horario.EspacioDeportivo.Codigo==CodigoEspacio) && (Horario.Sede.Codigo==codsede)) return true;
-                if (horario.Codigo == codigo) return true;
+                   if (horario.Codigo == codigo) return true;
             else return false;
             });
             return model;
@@ -95,26 +94,29 @@ namespace GestionReservaAppMVC.Controllers
             List<DetalleHorario> detHorarios = CrearDetalleHorario();//List<DetalleHorario> detHorarios =(List<DetalleHorario>)Session["detHorarios"];
 
            List<DetalleHorario> det = new List<DetalleHorario>();
-//           foreach (DetalleHorario dx in detHorarios)
                for (int index = 0; index < detHorarios.Count; index++)
 
              {
-           // DetalleHorario model = detHorarios.Single(delegate(DetalleHorario detallehorario)
-               
-                //{
                     if (detHorarios.ElementAt(index).Horario.Codigo == codigo)
                     {
                     det.Add(new DetalleHorario() { Horario = detHorarios.ElementAt(index).Horario, Dia = detHorarios.ElementAt(index).Dia, Horainicio = detHorarios.ElementAt(index).Horainicio, HoraFin = detHorarios.ElementAt(index).HoraFin });
-                   // return true;
                     }
-                    //else return false;
-                //}
-              //);
             } 
-            //DetalleHorario x = det.ConvertAll(DetalleHorario xx);
              return det;
         }
-        
+
+          // ******  Va a obtener un registro del detalle **********************************************
+        private DetalleHorario ObtenerHorariodeDetalle(int codigo,string dia)
+          {
+              List<DetalleHorario> detHorarios = (List<DetalleHorario>)Session["detHorarios"];
+              DetalleHorario model = detHorarios.Single(delegate(DetalleHorario dethorariodet)
+              {
+                  if ((dethorariodet.Horario.Codigo == codigo) && (dethorariodet.Dia == dia )) return true;
+                  else return false;
+              });
+              return model;
+          }
+
 
         // GET: /HorarioDeportivo/
         // ***** Muestra pagina con listado de Horarios *****
@@ -130,7 +132,7 @@ namespace GestionReservaAppMVC.Controllers
 
 
         // GET: /HorarioDeportivo/Details/5
-        // ***** Muestra pagina con detalle de un horario de espacio y sede *****
+        // ***** Muestra pagina con detalle de un horario de espacio deportivo y sede *****
         public ActionResult Details(int Codigo)//(int CodigoEspacio, int codsede)
         {
             Session["Mensaje"] = "";
@@ -139,7 +141,14 @@ namespace GestionReservaAppMVC.Controllers
             return View(modell);
         }
 
+        public ActionResult DetailsItem(int codigo, string dia)
+        {
+            DetalleHorario model = ObtenerHorariodeDetalle(codigo, dia);
+            return View(model);
+        }
         
+
+
         
         // GET: /HorarioDeportivo/Create
         //******* Muestra pagina para ingresar datos de creacion *******
@@ -153,8 +162,8 @@ namespace GestionReservaAppMVC.Controllers
             }
             else
             {*/
-            if (Session["espacios"] == null)
-                Session["espacios"] = espacioProxy.lista().ToList();
+          //  if (Session["espacios"] == null)
+            //    Session["espacios"] = espacioProxy.lista().ToList();
                 return View();
             //}
         } 
@@ -181,9 +190,7 @@ namespace GestionReservaAppMVC.Controllers
                            Codigo=int.Parse(collection["Sede.Codigo"]),
                            Nombre=collection["Sede.Nombre"]
                        },
-                //Dia=collection["Dia"],
-                //Horainicio=collection["Horainicio"],
-                //HoraFin=collection["HoraFin"]
+           
                 });
                 return RedirectToAction("Index");           
               }
@@ -193,24 +200,27 @@ namespace GestionReservaAppMVC.Controllers
             }
         }
         
-        //
+        
+
         // GET: /HorarioDeportivo/Edit/5
         public ActionResult Edit(int codigo)//(int codespacio,int codsede)
         {
-            Horario model = ObtenerHorario(codigo);//(codespacio, codsede);
+            //Horario model = ObtenerHorario(codigo);//(codespacio, codsede);
+            //return View(model);
+
+           List<DetalleHorario> model = ObtenerdetalleHorario(codigo);
             return View(model);
         }
 
-        //
         // POST: /HorarioDeportivo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int codigo, FormCollection collection)//(int codespacio, int codsede, FormCollection collection)
+        public ActionResult Edit(int codigo, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-                Horario model = ObtenerHorario(codigo);//(codespacio, codsede);
-               // model.Dia = collection["Dia"];
+                List<DetalleHorario> model = ObtenerdetalleHorario(codigo);
+              //model.EspacioDeportivo=collection["EspacioDeportivo.codigo"];
+                // model.Dia = collection["Dia"];
                 //model.Horainicio = collection["Horainicio"];
                // model.HoraFin = collection["HoraFin"];
                 return RedirectToAction("Index");
@@ -221,9 +231,34 @@ namespace GestionReservaAppMVC.Controllers
             }
         }
 
+        // *************** Edita item de detalle ********
+        public ActionResult EditItem(int codigo,string dia)//(int codespacio,int codsede)
+        {
+            DetalleHorario model = ObtenerHorariodeDetalle(codigo,dia);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditdatosItem(int codigo, string dia, FormCollection collection)
+        {
+            try
+            {
+                DetalleHorario model = ObtenerHorariodeDetalle(codigo, dia);
+                model.Horainicio = collection["Horainicio"];
+                model.HoraFin=collection["HoraFin"];
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+         
         //
         // GET: /HorarioDeportivo/Delete/5
-        public ActionResult Delete(int codigo)//(int codespacio, int codsede)
+        public ActionResult Delete(int codigo)
         {
             Horario model = ObtenerHorario(codigo);//(codespacio, codsede);
             return View(model);
@@ -233,13 +268,12 @@ namespace GestionReservaAppMVC.Controllers
         // POST: /HorarioDeportivo/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int codigo, FormCollection collection)//(int codespacio, int codsede, FormCollection collection)
+        public ActionResult Delete(int codigo, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
- List<Horario> Horarios=(List<Horario>)Session["Horarios"];
- Horarios.Remove(ObtenerHorario(codigo));//(ObtenerHorario(codespacio,codsede));
+    List<Horario> Horarios=(List<Horario>)Session["Horarios"];
+    Horarios.Remove(ObtenerHorario(codigo));//(ObtenerHorario(codespacio,codsede));
                 return RedirectToAction("Index");
             }
             catch

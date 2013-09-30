@@ -78,6 +78,7 @@
     <Compile Include="EspacioDeportivoService.svc.cs">
       <DependentUpon>EspacioDeportivoService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Excepcion\ValidationException.cs" />
     <Compile Include="IEspacioDeportivoService.cs" />
     <Compile Include="ISedeService.cs" />
     <Compile Include="Persistencia\BaseDAO.cs" />

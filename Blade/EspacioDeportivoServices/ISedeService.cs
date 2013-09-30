@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using EspacioDeportivoServices.Dominio;
+using EspacioDeportivoServices.Excepcion;
 
 namespace EspacioDeportivoServices
 {
@@ -12,6 +13,7 @@ namespace EspacioDeportivoServices
     [ServiceContract]
     public interface ISedeService
     {
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
         List<Sede> listar();
     }

@@ -151,23 +151,73 @@ namespace GestionReservaServices.EspacioDeportivoWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+    [System.SerializableAttribute()]
+    public partial class ValidationException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValidationErrorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ValidationError {
+            get {
+                return this.ValidationErrorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationErrorField, value) != true)) {
+                    this.ValidationErrorField = value;
+                    this.RaisePropertyChanged("ValidationError");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EspacioDeportivoWS.IEspacioDeportivoService")]
     public interface IEspacioDeportivoService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/obtener", ReplyAction="http://tempuri.org/IEspacioDeportivoService/obtenerResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaServices.EspacioDeportivoWS.ValidationException), Action="http://tempuri.org/IEspacioDeportivoService/obtenerValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaServices.EspacioDeportivoWS.EspacioDeportivo obtener(int Codigo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/lista", ReplyAction="http://tempuri.org/IEspacioDeportivoService/listaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaServices.EspacioDeportivoWS.ValidationException), Action="http://tempuri.org/IEspacioDeportivoService/listaValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaServices.EspacioDeportivoWS.EspacioDeportivo[] lista();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/crear", ReplyAction="http://tempuri.org/IEspacioDeportivoService/crearResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaServices.EspacioDeportivoWS.ValidationException), Action="http://tempuri.org/IEspacioDeportivoService/crearValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaServices.EspacioDeportivoWS.EspacioDeportivo crear(string nombre, int sede);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/actualizar", ReplyAction="http://tempuri.org/IEspacioDeportivoService/actualizarResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaServices.EspacioDeportivoWS.ValidationException), Action="http://tempuri.org/IEspacioDeportivoService/actualizarValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaServices.EspacioDeportivoWS.EspacioDeportivo actualizar(int codigo, string nombre, int sede);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEspacioDeportivoService/eliminar", ReplyAction="http://tempuri.org/IEspacioDeportivoService/eliminarResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaServices.EspacioDeportivoWS.ValidationException), Action="http://tempuri.org/IEspacioDeportivoService/eliminarValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         void eliminar(int Codigo);
     }
     

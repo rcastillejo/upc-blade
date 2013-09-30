@@ -13,6 +13,7 @@ namespace GestionReservaServices
         EspacioDeportivoWS.EspacioDeportivoServiceClient proxyEspacio = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
         SedeWS.SedeServiceClient proxySede = new SedeWS.SedeServiceClient();
 
+
         public EspacioDeportivoWS.EspacioDeportivo obtenerEspacio(int codigo)
         {
             return proxyEspacio.obtener(codigo);
@@ -24,21 +25,24 @@ namespace GestionReservaServices
             return proxyEspacio.lista().ToList();
         }
 
-        public EspacioDeportivoWS.EspacioDeportivo crearEspacio(string nombre, int sede)
+        public string crearEspacio(string nombre, int sede)
         {
-            return proxyEspacio.crear(nombre, sede);
+            EspacioDeportivoWS.EspacioDeportivo espacioDeportivoResultado = proxyEspacio.crear(nombre, sede);
+
+            return "El espacio deportivo ha sido guardado exitosamente (" + espacioDeportivoResultado.Codigo + ")";
         }
 
-        public EspacioDeportivoWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede)
+        public string actualizarEspacio(int codigo, string nombre, int sede)
         {
-            return proxyEspacio.actualizar(codigo, nombre, sede);
+            EspacioDeportivoWS.EspacioDeportivo espacioDeportivoResultado = proxyEspacio.actualizar(codigo, nombre, sede);
+            return "El espacio deportivo ha sido guardado exitosamente (" + espacioDeportivoResultado.Codigo + ")";
         }
 
-        public void eliminarEspacio(int Codigo)
+        public string eliminarEspacio(int Codigo)
         {
             proxyEspacio.eliminar(Codigo);
+            return "El espacio deportivo ha sido eliminado exitosamente";
         }
-
 
         public List<SedeWS.Sede> listarSede()
         {

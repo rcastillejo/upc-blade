@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" />
       <xsd:import schemaLocation="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" />
     </xsd:schema>
@@ -13,11 +14,17 @@
   <wsdl:message name="IEspacioDeportivoService_obtener_OutputMessage">
     <wsdl:part name="parameters" element="tns:obtenerResponse" />
   </wsdl:message>
+  <wsdl:message name="IEspacioDeportivoService_obtener_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q1:ValidationException" />
+  </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_lista_InputMessage">
     <wsdl:part name="parameters" element="tns:lista" />
   </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_lista_OutputMessage">
     <wsdl:part name="parameters" element="tns:listaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEspacioDeportivoService_lista_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q2:ValidationException" />
   </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_crear_InputMessage">
     <wsdl:part name="parameters" element="tns:crear" />
@@ -25,11 +32,17 @@
   <wsdl:message name="IEspacioDeportivoService_crear_OutputMessage">
     <wsdl:part name="parameters" element="tns:crearResponse" />
   </wsdl:message>
+  <wsdl:message name="IEspacioDeportivoService_crear_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q3:ValidationException" />
+  </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_actualizar_InputMessage">
     <wsdl:part name="parameters" element="tns:actualizar" />
   </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_actualizar_OutputMessage">
     <wsdl:part name="parameters" element="tns:actualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEspacioDeportivoService_actualizar_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q4:ValidationException" />
   </wsdl:message>
   <wsdl:message name="IEspacioDeportivoService_eliminar_InputMessage">
     <wsdl:part name="parameters" element="tns:eliminar" />
@@ -37,26 +50,34 @@
   <wsdl:message name="IEspacioDeportivoService_eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:eliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="IEspacioDeportivoService_eliminar_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q5:ValidationException" />
+  </wsdl:message>
   <wsdl:portType name="IEspacioDeportivoService">
     <wsdl:operation name="obtener">
       <wsdl:input wsaw:Action="http://tempuri.org/IEspacioDeportivoService/obtener" message="tns:IEspacioDeportivoService_obtener_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEspacioDeportivoService/obtenerResponse" message="tns:IEspacioDeportivoService_obtener_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEspacioDeportivoService/obtenerValidationExceptionFault" name="ValidationExceptionFault" message="tns:IEspacioDeportivoService_obtener_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="lista">
       <wsdl:input wsaw:Action="http://tempuri.org/IEspacioDeportivoService/lista" message="tns:IEspacioDeportivoService_lista_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEspacioDeportivoService/listaResponse" message="tns:IEspacioDeportivoService_lista_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEspacioDeportivoService/listaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IEspacioDeportivoService_lista_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="crear">
       <wsdl:input wsaw:Action="http://tempuri.org/IEspacioDeportivoService/crear" message="tns:IEspacioDeportivoService_crear_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEspacioDeportivoService/crearResponse" message="tns:IEspacioDeportivoService_crear_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEspacioDeportivoService/crearValidationExceptionFault" name="ValidationExceptionFault" message="tns:IEspacioDeportivoService_crear_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="actualizar">
       <wsdl:input wsaw:Action="http://tempuri.org/IEspacioDeportivoService/actualizar" message="tns:IEspacioDeportivoService_actualizar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEspacioDeportivoService/actualizarResponse" message="tns:IEspacioDeportivoService_actualizar_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEspacioDeportivoService/actualizarValidationExceptionFault" name="ValidationExceptionFault" message="tns:IEspacioDeportivoService_actualizar_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/IEspacioDeportivoService/eliminar" message="tns:IEspacioDeportivoService_eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEspacioDeportivoService/eliminarResponse" message="tns:IEspacioDeportivoService_eliminar_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEspacioDeportivoService/eliminarValidationExceptionFault" name="ValidationExceptionFault" message="tns:IEspacioDeportivoService_eliminar_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEspacioDeportivoService" type="tns:IEspacioDeportivoService">
@@ -69,6 +90,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="lista">
       <soap:operation soapAction="http://tempuri.org/IEspacioDeportivoService/lista" style="document" />
@@ -78,6 +102,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="crear">
       <soap:operation soapAction="http://tempuri.org/IEspacioDeportivoService/crear" style="document" />
@@ -87,6 +114,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="actualizar">
       <soap:operation soapAction="http://tempuri.org/IEspacioDeportivoService/actualizar" style="document" />
@@ -96,6 +126,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="eliminar">
       <soap:operation soapAction="http://tempuri.org/IEspacioDeportivoService/eliminar" style="document" />
@@ -105,6 +138,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="EspacioDeportivoService">

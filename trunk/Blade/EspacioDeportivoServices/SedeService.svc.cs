@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using EspacioDeportivoServices.Persistencia;
+using EspacioDeportivoServices.Excepcion;
 
 namespace EspacioDeportivoServices
 {
@@ -13,9 +14,17 @@ namespace EspacioDeportivoServices
     {
         private SedeDAO sedeDAO = new SedeDAO();
 
+        
         public List<Dominio.Sede> listar()
         {
-            return (List<Dominio.Sede>)sedeDAO.ListarTodos().ToList();
+            ICollection<Dominio.Sede> sedes = sedeDAO.ListarTodos();
+            if (sedes == null) {
+                throw new FaultException<ValidationException>(new ValidationException
+                {
+                    ValidationError = "No existe sedes disponibles"
+                }, new FaultReason("No existe sedes disponibles"));
+            }
+            return (List<Dominio.Sede>)sedes.ToList();
         }
     }
 }

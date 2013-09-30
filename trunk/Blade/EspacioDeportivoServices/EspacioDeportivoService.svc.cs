@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using EspacioDeportivoServices.Dominio;
 using EspacioDeportivoServices.Persistencia;
+using EspacioDeportivoServices.Excepcion;
 
 namespace EspacioDeportivoServices
 {
@@ -41,7 +42,16 @@ namespace EspacioDeportivoServices
 
         public EspacioDeportivo obtener(int Codigo)
         {
-            return espacioDeportivoDAO.Obtener(Codigo);
+            
+            EspacioDeportivo espacio = espacioDeportivoDAO.Obtener(Codigo);
+            if (espacio == null)
+            {
+                throw new FaultException<ValidationException>(new ValidationException
+                {
+                    ValidationError = "El espacio deportivo no se encuentra disponible"
+                }, new FaultReason("El espacio deportivo no se encuentra disponible"));
+            }
+            return espacio;            
         }
 
         public List<EspacioDeportivo> lista()
@@ -51,36 +61,73 @@ namespace EspacioDeportivoServices
 
         public EspacioDeportivo crear(string nombre, int sede)
         {
-            Sede sedeExistente = sedeDAO.Obtener(sede);
+            EspacioDeportivo espacioDeportivo;
 
-            EspacioDeportivo espacioDeportivo = new EspacioDeportivo() 
-            { 
-                Nombre = nombre,
-                Sede = sedeExistente
-            };
+            try
+            {
+                Sede sedeExistente = sedeDAO.Obtener(sede);
 
-            return espacioDeportivoDAO.Crear(espacioDeportivo);
+                espacioDeportivo = new EspacioDeportivo()
+                {
+                    Nombre = nombre,
+                    Sede = sedeExistente
+                };
 
+                EspacioDeportivo espacioDeportivoResultado = espacioDeportivoDAO.Crear(espacioDeportivo);
+
+            }
+            catch
+            {
+                throw new FaultException<ValidationException>(new ValidationException
+                {
+                    ValidationError = "Error al registrar espacio deportivo"
+                }, new FaultReason("Error al registrar espacio deportivo"));
+
+            }
+            return espacioDeportivo;
         }
 
         public EspacioDeportivo actualizar(int codigo, string nombre, int sede)
         {
-            Sede sedeExistente = sedeDAO.Obtener(sede);
-
-            EspacioDeportivo espacioDeportivo = new EspacioDeportivo()
+            EspacioDeportivo espacioDeportivo;
+            try
             {
-                Codigo = codigo,
-                Nombre = nombre,
-                Sede = sedeExistente
-            };
+                Sede sedeExistente = sedeDAO.Obtener(sede);
 
-            return espacioDeportivoDAO.Modificar(espacioDeportivo);
+                espacioDeportivo = new EspacioDeportivo()
+                {
+                    Codigo = codigo,
+                    Nombre = nombre,
+                    Sede = sedeExistente
+                };
+
+                EspacioDeportivo espacioDeportivoResultado = espacioDeportivoDAO.Modificar(espacioDeportivo);
+            }
+            catch
+            {
+                throw new FaultException<ValidationException>(new ValidationException
+                {
+                    ValidationError = "Error al guardar espacio deportivo"
+                }, new FaultReason("Error al guardar espacio deportivo"));
+            }
+            return espacioDeportivo;
         }
 
         public void eliminar(int codigo)
         {
-            EspacioDeportivo espacioDeportivo = espacioDeportivoDAO.Obtener(codigo);
-            espacioDeportivoDAO.Eliminar(espacioDeportivo);
+            try
+            {
+                EspacioDeportivo espacioDeportivo = espacioDeportivoDAO.Obtener(codigo);
+                espacioDeportivoDAO.Eliminar(espacioDeportivo);
+            }
+            catch
+            {
+                throw new FaultException<ValidationException>(new ValidationException
+                {
+                    ValidationError = "Error al eliminar espacio deportivo"
+                }, new FaultReason("Error al eliminar espacio deportivo"));
+            }
+
         }
     }
 }

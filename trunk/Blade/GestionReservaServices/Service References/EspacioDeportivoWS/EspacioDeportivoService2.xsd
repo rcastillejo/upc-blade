@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="EspacioDeportivo">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ValidationException">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
-      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Sede" nillable="true" type="tns:Sede" />
+      <xs:element minOccurs="0" name="ValidationError" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="EspacioDeportivo" nillable="true" type="tns:EspacioDeportivo" />
-  <xs:complexType name="Sede">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
-      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Sede" nillable="true" type="tns:Sede" />
-  <xs:complexType name="ArrayOfEspacioDeportivo">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EspacioDeportivo" nillable="true" type="tns:EspacioDeportivo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEspacioDeportivo" nillable="true" type="tns:ArrayOfEspacioDeportivo" />
+  <xs:element name="ValidationException" nillable="true" type="tns:ValidationException" />
 </xs:schema>

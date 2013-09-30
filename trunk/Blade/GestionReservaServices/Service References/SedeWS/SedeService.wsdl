@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:15426/SedeService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15426/SedeService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" />
       <xsd:import schemaLocation="http://localhost:15426/SedeService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:15426/SedeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" />
     </xsd:schema>
@@ -13,10 +14,14 @@
   <wsdl:message name="ISedeService_listar_OutputMessage">
     <wsdl:part name="parameters" element="tns:listarResponse" />
   </wsdl:message>
+  <wsdl:message name="ISedeService_listar_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q1:ValidationException" />
+  </wsdl:message>
   <wsdl:portType name="ISedeService">
     <wsdl:operation name="listar">
       <wsdl:input wsaw:Action="http://tempuri.org/ISedeService/listar" message="tns:ISedeService_listar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISedeService/listarResponse" message="tns:ISedeService_listar_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ISedeService/listarValidationExceptionFault" name="ValidationExceptionFault" message="tns:ISedeService_listar_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISedeService" type="tns:ISedeService">
@@ -29,6 +34,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="SedeService">

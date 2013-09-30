@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using GestionReservaServices.EspacioDeportivoWS;
 
 namespace GestionReservaServices
 {
@@ -11,18 +12,28 @@ namespace GestionReservaServices
     [ServiceContract]
     public interface IGestionReservaService
     {
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
         EspacioDeportivoWS.EspacioDeportivo obtenerEspacio(int codigo);
+
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
         List<EspacioDeportivoWS.EspacioDeportivo> listarEspacio();
+
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
-        EspacioDeportivoWS.EspacioDeportivo crearEspacio(string nombre, int sede);
+        String crearEspacio(string nombre, int sede);
+
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
-        EspacioDeportivoWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede);
+        String actualizarEspacio(int codigo, string nombre, int sede);
+
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
-        void eliminarEspacio(int Codigo);
+        String eliminarEspacio(int Codigo);
 
 
+        [FaultContract(typeof(ValidationException))]
         [OperationContract]
         List<SedeWS.Sede> listarSede();
     }

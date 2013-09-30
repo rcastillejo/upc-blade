@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="941ba51b-3d9b-43f1-8b6c-03795def9f3a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8ba8071c-6ee0-49a5-ae62-e6da7c44781f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,11 +21,12 @@
     <MetadataSource Address="http://localhost:15426/SedeService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SedeService.disco" MetadataType="Disco" ID="1feb8494-65e0-4bb5-8f37-b625c7a3bade" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?disco" />
-    <MetadataFile FileName="SedeService.xsd" MetadataType="Schema" ID="94fa8b6d-d748-4829-aa95-1566552a2f51" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd1" />
-    <MetadataFile FileName="SedeService1.xsd" MetadataType="Schema" ID="63f68d61-5640-4669-8c8c-cdd1c62ddda0" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd2" />
-    <MetadataFile FileName="SedeService.wsdl" MetadataType="Wsdl" ID="14f56d60-fc83-43e3-941f-2f7d1df642e0" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?wsdl" />
-    <MetadataFile FileName="SedeService2.xsd" MetadataType="Schema" ID="0b822366-8625-4fc5-97e5-9590286f1a22" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SedeService.disco" MetadataType="Disco" ID="7e131057-c789-4956-b1d9-dc592a22b805" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?disco" />
+    <MetadataFile FileName="SedeService.xsd" MetadataType="Schema" ID="d75a48c7-37a7-46ce-9652-0751ae1da4ad" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SedeService1.xsd" MetadataType="Schema" ID="75630193-580e-49ef-a4fb-57316b3cd022" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SedeService2.xsd" MetadataType="Schema" ID="6f6b6a5c-7215-4ca7-b60d-ac37cd838128" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SedeService.wsdl" MetadataType="Wsdl" ID="ac92d8e7-fdbe-4f80-992a-b71c3237117c" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?wsdl" />
+    <MetadataFile FileName="SedeService3.xsd" MetadataType="Schema" ID="6457544c-2be2-4d20-9026-5ce1c5d76d64" SourceId="1" SourceUrl="http://localhost:15426/SedeService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

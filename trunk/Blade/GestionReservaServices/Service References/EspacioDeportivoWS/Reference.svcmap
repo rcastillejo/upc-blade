@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="75c72836-160e-466e-9f94-51423b3be6eb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="96c8c977-44f8-4f3a-b9ad-e3ca3a2b338d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,11 +21,12 @@
     <MetadataSource Address="http://localhost:15426/EspacioDeportivoService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="EspacioDeportivoService.xsd" MetadataType="Schema" ID="342538c1-7840-46d4-8a95-025c803ef4a0" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd0" />
-    <MetadataFile FileName="EspacioDeportivoService.disco" MetadataType="Disco" ID="4407c45c-875c-4f12-afd6-37a95a61dbbf" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?disco" />
-    <MetadataFile FileName="EspacioDeportivoService1.xsd" MetadataType="Schema" ID="333aad8d-834c-4534-9fd7-4c73ad863118" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd1" />
-    <MetadataFile FileName="EspacioDeportivoService.wsdl" MetadataType="Wsdl" ID="355865a3-4145-479c-a4c5-e9fd3f9b0131" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?wsdl" />
-    <MetadataFile FileName="EspacioDeportivoService2.xsd" MetadataType="Schema" ID="7d9c212c-baa4-48d1-8949-1ec5b13c041a" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd2" />
+    <MetadataFile FileName="EspacioDeportivoService.xsd" MetadataType="Schema" ID="086ebf48-96ef-4cc3-943e-2cf324f43b9c" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EspacioDeportivoService1.xsd" MetadataType="Schema" ID="0cabd302-80bd-4c57-8bf5-bcc192a4c4a9" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd2" />
+    <MetadataFile FileName="EspacioDeportivoService.disco" MetadataType="Disco" ID="ea58a2a6-a1fe-46cd-9fa8-d8b68a8afbce" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?disco" />
+    <MetadataFile FileName="EspacioDeportivoService2.xsd" MetadataType="Schema" ID="e3cfc895-e50a-4642-9ce8-72214b447dd4" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd3" />
+    <MetadataFile FileName="EspacioDeportivoService3.xsd" MetadataType="Schema" ID="5ec5f7f2-3fc4-4030-b211-c8cf91991d8e" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EspacioDeportivoService.wsdl" MetadataType="Wsdl" ID="24a550c2-53d1-4761-8ec1-3dbf57c76c63" SourceId="1" SourceUrl="http://localhost:15426/EspacioDeportivoService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionReservaServices", "G
 		{424ED702-4478-423B-84D4-35B11FD46142} = {424ED702-4478-423B-84D4-35B11FD46142}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorarioServices", "HorarioServices\HorarioServices.csproj", "{161E0E95-2422-415C-88E2-EF81ACB69E0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHorarioService", "TestHorarioService\TestHorarioService.csproj", "{61564BDA-7293-4B5D-9ED3-1A318795D9CF}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -61,6 +65,14 @@ Global
 		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61B63A66-40FD-412A-92AA-4BFEC90991B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161E0E95-2422-415C-88E2-EF81ACB69E0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161E0E95-2422-415C-88E2-EF81ACB69E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161E0E95-2422-415C-88E2-EF81ACB69E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161E0E95-2422-415C-88E2-EF81ACB69E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61564BDA-7293-4B5D-9ED3-1A318795D9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61564BDA-7293-4B5D-9ED3-1A318795D9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61564BDA-7293-4B5D-9ED3-1A318795D9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61564BDA-7293-4B5D-9ED3-1A318795D9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

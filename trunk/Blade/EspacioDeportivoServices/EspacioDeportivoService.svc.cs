@@ -17,27 +17,7 @@ namespace EspacioDeportivoServices
 
         private EspacioDeportivoDAO espacioDeportivoDAO = new EspacioDeportivoDAO();
 
-        /*private EspacioDeportivoDAO EspacioDeportivoDAO
-        {
-            get
-            {
-                if (espacioDeportivoDAO == null)
-                    espacioDeportivoDAO = new EspacioDeportivoDAO();
-                return espacioDeportivoDAO;
-            }
-        }*/
-
         private SedeDAO sedeDAO = new SedeDAO();
-
-        /*private SedeDAO SedeDAO
-        {
-            get
-            {
-                if (sedeDAO == null)
-                    sedeDAO = new SedeDAO();
-                return sedeDAO;
-            }
-        }*/
 
 
         public EspacioDeportivo obtener(int Codigo)
@@ -51,7 +31,7 @@ namespace EspacioDeportivoServices
                     ValidationError = "El espacio deportivo no se encuentra disponible"
                 }, new FaultReason("El espacio deportivo no se encuentra disponible"));
             }
-            return espacio;            
+            return espacio;
         }
 
         public List<EspacioDeportivo> lista()

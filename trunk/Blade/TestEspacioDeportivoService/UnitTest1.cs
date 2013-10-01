@@ -21,11 +21,17 @@ namespace TestEspacioDeportivoService
         }
 
         [TestMethod]
-        public void TestObtener()
+        public void TestObtenerError()
         {
-            EspacioDeportivoWS.EspacioDeportivoServiceClient proxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
-            EspacioDeportivoWS.EspacioDeportivo espacio = proxy.obtener(1);
-            Assert.IsNotNull(espacio);
+            try
+            {
+                EspacioDeportivoWS.EspacioDeportivoServiceClient proxy = new EspacioDeportivoWS.EspacioDeportivoServiceClient();
+                EspacioDeportivoWS.EspacioDeportivo espacio = proxy.obtener(0);
+            }
+            catch (Exception e) {
+                Assert.IsNotNull(e);
+            }
+            
         }
         [TestMethod]
         public void TestListar()

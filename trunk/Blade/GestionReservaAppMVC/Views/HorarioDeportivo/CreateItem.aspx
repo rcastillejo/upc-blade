@@ -1,16 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<GestionReservaAppMVC.GestionReservaWS.Horario>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	EditItem
+	Create
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Editar</h2>
+    <h2>Registros de Horarios Deportivos</h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
-        
+
         <fieldset>
             <legend>Campos</legend>
             
@@ -45,16 +45,15 @@
                 <%: Html.DropDownListFor(model => model.HoraFin, new SelectList((List<String>)Session["horasFin"]))%>
                 <%: Html.ValidationMessageFor(model => model.HoraFin)%>
             </div>
-            
             <p>
-                <input type="submit" value="Guardar" />
+                <input type="submit" value="Crear" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Regresar a la Lista", "Details", new { Codigo = Model.Codigo })%>
+        <%: Html.ActionLink("Regresar a la lista", "Details", new { Codigo = Model.Codigo })%>
     </div>
 
 </asp:Content>

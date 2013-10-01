@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1f2e968a-b2d4-41f3-a6e6-3aece837e73a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="01ce1d10-38e3-4986-9bfd-b9d2090e2492" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,11 +21,13 @@
     <MetadataSource Address="http://localhost:38930/GestionReservaService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GestionReservaService.xsd" MetadataType="Schema" ID="ee28b537-b2d6-45b1-9987-c2f91b35dbc1" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd1" />
-    <MetadataFile FileName="GestionReservaService.disco" MetadataType="Disco" ID="91ba16b7-829a-403f-8142-08a054cc32b2" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?disco" />
-    <MetadataFile FileName="GestionReservaService.wsdl" MetadataType="Wsdl" ID="55079fc7-c9ba-43e3-a851-96aa9a8ac608" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?wsdl" />
-    <MetadataFile FileName="GestionReservaService1.xsd" MetadataType="Schema" ID="37b8b3cf-4451-4477-b94f-b8f19b82981c" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd2" />
-    <MetadataFile FileName="GestionReservaService2.xsd" MetadataType="Schema" ID="6591664d-ecf6-4c3d-b696-1d5795458cbf" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GestionReservaService.wsdl" MetadataType="Wsdl" ID="e2f67438-b42a-4d90-a37b-c18244cc5735" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?wsdl" />
+    <MetadataFile FileName="GestionReservaService1.xsd" MetadataType="Schema" ID="3629a736-e00d-46f0-abc0-b259d89c7cd4" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GestionReservaService3.xsd" MetadataType="Schema" ID="8af5f74d-e45c-4234-9e72-584715eefa63" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GestionReservaService2.xsd" MetadataType="Schema" ID="41b41a2b-641e-45fb-82ef-40e0299b057f" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GestionReservaService.xsd" MetadataType="Schema" ID="9aa910cf-2b02-4ff7-82a6-57a548a64cb8" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GestionReservaService31.xsd" MetadataType="Schema" ID="4ecfb2c9-d422-454f-8426-003692c55abe" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd4" />
+    <MetadataFile FileName="GestionReservaService.disco" MetadataType="Disco" ID="23385ded-046c-4163-a35c-05958000a730" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

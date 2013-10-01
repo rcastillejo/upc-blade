@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GestionReservaAppMVC.GestionReservaWS;
+using System.ServiceModel;
 
 namespace GestionReservaAppMVC.Controllers
 {
@@ -16,12 +17,20 @@ namespace GestionReservaAppMVC.Controllers
 
         public ActionResult Index()
         {
-            if (Session["espacios"] == null)
-                Session["espacios"] = proxy.listarEspacio().ToList();
-            if (Session["sedes"] == null)
-                Session["sedes"] = proxy.listarSede().ToList();
-            List<EspacioDeportivo> model = (List<EspacioDeportivo>)Session["espacios"];
-            return View(model);
+            try
+            {
+                if (Session["espacios"] == null)
+                    Session["espacios"] = proxy.listarEspacio().ToList();
+                if (Session["sedes"] == null)
+                    Session["sedes"] = proxy.listarSede().ToList();
+                List<EspacioDeportivo> model = (List<EspacioDeportivo>)Session["espacios"];
+                return View(model);
+                }
+            catch (FaultException ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+                return View();
+            }
         }
 
         //
@@ -30,9 +39,18 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Details(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = proxy.obtenerEspacio(id);
 
-            return View(model);
+            try
+            {
+                EspacioDeportivo model = proxy.obtenerEspacio(id);
+
+                return View(model);
+            }
+            catch (FaultException ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+                return View();
+            }
         }
 
         //
@@ -63,14 +81,14 @@ namespace GestionReservaAppMVC.Controllers
                 // TODO: Add insert logic here
                 string nombre = collection["Nombre"];
                 int sedeCodigo = int.Parse(collection["Sede.Codigo"]);
-                EspacioDeportivo espacio = proxy.crearEspacio(nombre, sedeCodigo);
+                string mensaje= proxy.crearEspacio(nombre, sedeCodigo);
                 Session["espacios"] = proxy.listarEspacio().ToList();
-                Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente ("+espacio.Codigo+")";
+                Session["Mensaje"] = mensaje;
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException ex)
             {
-                ViewData["Mensaje"] = "Error al crear el espacio deportivo";
+                ViewData["Mensaje"] = ex.Message;
                 return View();
             }
         }
@@ -88,12 +106,22 @@ namespace GestionReservaAppMVC.Controllers
             }
             else
             {
-                EspacioDeportivo model = proxy.obtenerEspacio(id);
-                if (model == null) {
-                    Session["Mensaje"] = "El espacio deportivo no se encuentra disponible";
-                    return RedirectToAction("Index");
+                try
+                {
+                    EspacioDeportivo model = proxy.obtenerEspacio(id);
+                    if (model == null)
+                    {
+                        Session["Mensaje"] = "El espacio deportivo no se encuentra disponible";
+                        return RedirectToAction("Index");
+                    }
+                    return View(model);
+
                 }
-                return View(model);
+                catch (FaultException ex)
+                {
+                    Session["Mensaje"] = ex.Message;
+                    return View();
+                }
             }
         }
 
@@ -108,14 +136,14 @@ namespace GestionReservaAppMVC.Controllers
                 // TODO: Add update logic here
                 string nombre = collection["Nombre"];
                 int sedeCodigo = int.Parse(collection["Sede.Codigo"]);                 
-                EspacioDeportivo model = proxy.actualizarEspacio(id, nombre, sedeCodigo);
+                string mensaje= proxy.actualizarEspacio(id, nombre, sedeCodigo);
                 Session["espacios"] = proxy.listarEspacio().ToList();
-                Session["Mensaje"] = "El espacio deportivo ha sido guardado exitosamente (" + model.Codigo + ")";
+                Session["Mensaje"] = mensaje;
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException ex)
             {
-                ViewData["Mensaje"] = "El espacio deportivo no se encuentra disponible";
+                ViewData["Mensaje"] = ex.Message;
                 return View();
             }
         }
@@ -126,8 +154,16 @@ namespace GestionReservaAppMVC.Controllers
         public ActionResult Delete(int id)
         {
             Session["Mensaje"] = "";
-            EspacioDeportivo model = proxy.obtenerEspacio(id);
-            return View(model);
+            try
+            {
+                EspacioDeportivo model = proxy.obtenerEspacio(id);
+                return View(model);            
+            }
+            catch (FaultException ex)
+            {
+                ViewData["Mensaje"] = ex.Message;
+                return View();
+            }
         }
 
         //
@@ -139,14 +175,14 @@ namespace GestionReservaAppMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-                proxy.eliminarEspacio(id);
+                string mensaje = proxy.eliminarEspacio(id);
                 Session["espacios"] = proxy.listarEspacio().ToList();
-                Session["Mensaje"] = "El espacio deportivo ha sido eliminado exitosamente";
+                Session["Mensaje"] = mensaje;
                 return RedirectToAction("Index");
             }
-            catch
+            catch (FaultException ex)
             {
-                ViewData["Mensaje"] = "El espacio deportivo no se encuentra disponible";
+                ViewData["Mensaje"] = ex.Message;
                 return View();
             }
         }

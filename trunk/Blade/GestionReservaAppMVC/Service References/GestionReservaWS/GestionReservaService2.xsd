@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" />
+  <xs:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" />
   <xs:element name="obtenerEspacio">
     <xs:complexType>
       <xs:sequence>
@@ -38,7 +39,7 @@
   <xs:element name="crearEspacioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" minOccurs="0" name="crearEspacioResult" nillable="true" type="q3:EspacioDeportivo" />
+        <xs:element minOccurs="0" name="crearEspacioResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -54,7 +55,7 @@
   <xs:element name="actualizarEspacioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" minOccurs="0" name="actualizarEspacioResult" nillable="true" type="q4:EspacioDeportivo" />
+        <xs:element minOccurs="0" name="actualizarEspacioResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -67,7 +68,9 @@
   </xs:element>
   <xs:element name="eliminarEspacioResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eliminarEspacioResult" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="listarSede">
@@ -78,7 +81,68 @@
   <xs:element name="listarSedeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" minOccurs="0" name="listarSedeResult" nillable="true" type="q5:ArrayOfSede" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Dominio" minOccurs="0" name="listarSedeResult" nillable="true" type="q3:ArrayOfSede" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registrarHorario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="horaInicio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="horaFin" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registrarHorarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="registrarHorarioResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerHorario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerHorarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="obtenerHorarioResult" nillable="true" type="q4:Horario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="eliminarHorario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="eliminarHorarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="eliminarHorarioResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarHorario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarHorarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="listarHorarioResult" nillable="true" type="q5:ArrayOfHorario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

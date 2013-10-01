@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.Models.DetalleHorario>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.GestionReservaWS.Horario>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Detalle Horario Espacios Deportivos
@@ -6,8 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Espacios Deportivos </h2>
-
+    <h2>Espacios Deportivos </h2>    
+    <%: Html.ValidationSummary(true) %>
     <table>
         <tr>
             <th></th>
@@ -29,17 +29,18 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Detalles", "DetailsItem", new { Codigo = item.Horario.Codigo, Dia=item.Dia })%> |
-                <%: Html.ActionLink("Eliminar", "Delete", new { Codigo = item.Horario.Codigo })%>
+                <%: Html.ActionLink("Editar", "EditItem", new { Codigo = item.Codigo, Dia=item.Dia })%> |
+                <%: Html.ActionLink("Detalle", "DetailsItem", new { Codigo = item.Codigo, Dia=item.Dia })%> |
+                <%: Html.ActionLink("Eliminar", "DeleteItem", new { Codigo = item.Codigo, Dia = item.Dia })%>
             </td>
             <td>
-                <%: item.Horario.Codigo%>
+                <%: item.Codigo%>
             </td>
             <td>
                 <%: item.Dia %>
             </td>
             <td>
-                <%: item.Horainicio %> 
+                <%: item.HoraInicio %> 
             </td>
             <td>
                 <%: item.HoraFin %> 
@@ -52,8 +53,9 @@
 
     <p>
     
-    <%-- <%: Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> | --%>
+    <%: Html.ActionLink("Crear", "CreateItem")%>
     <%: Html.ActionLink("Regresar a la lista", "Index") %>
+    <%: Session["Mensaje"]%>
     </p>
 
 </asp:Content>

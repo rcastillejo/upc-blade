@@ -69,16 +69,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HorarioDeportivoController.cs" />
     <Compile Include="Controllers\ReglaEspacioDeportivoController.cs" />
     <Compile Include="Controllers\ReservaCanceladaController.cs" />
     <Compile Include="Controllers\ReservaConfirmadaController.cs" />
     <Compile Include="Controllers\EspacioDeportivoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservarController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\CriterioReservar.cs" />
+    <Compile Include="Models\DetalleHorario.cs" />
+    <Compile Include="Models\Horario.cs" />
     <Compile Include="Models\ReglaEspacioDeportivo.cs" />
     <Compile Include="Models\ReservaCancelada.cs" />
     <Compile Include="Models\ReservaConfirmada.cs" />
@@ -99,12 +104,21 @@
     <None Include="Service References\GestionReservaWS\GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\GestionReservaWS\GestionReservaAppMVC.GestionReservaWS.Horario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GestionReservaWS\GestionReservaAppMVC.GestionReservaWS.Sede.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GestionReservaWS\GestionReservaService.disco" />
     <None Include="Service References\GestionReservaWS\configuration91.svcinfo" />
     <None Include="Service References\GestionReservaWS\configuration.svcinfo" />
+    <None Include="Service References\GestionReservaWS\GestionReservaService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GestionReservaWS\GestionReservaService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GestionReservaWS\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -114,6 +128,12 @@
     <Content Include="Views\EspacioDeportivo\Details.aspx" />
     <Content Include="Views\EspacioDeportivo\Edit.aspx" />
     <Content Include="Views\EspacioDeportivo\Index.aspx" />
+    <Content Include="Views\HorarioDeportivo\CreateItem.aspx" />
+    <Content Include="Views\HorarioDeportivo\DeleteItem.aspx" />
+    <Content Include="Views\HorarioDeportivo\Details.aspx" />
+    <Content Include="Views\HorarioDeportivo\DetailsItem.aspx" />
+    <Content Include="Views\HorarioDeportivo\EditItem.aspx" />
+    <Content Include="Views\HorarioDeportivo\Index.aspx" />
     <Content Include="Views\ReglaEspacioDeportivo\Details.aspx" />
     <Content Include="Views\ReglaEspacioDeportivo\Edit.aspx" />
     <Content Include="Views\ReglaEspacioDeportivo\Index.aspx" />

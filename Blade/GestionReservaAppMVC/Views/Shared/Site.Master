@@ -22,12 +22,14 @@
             
             <div id="menucontainer">
             
-                <ul id="menu">    
-                <li><%: Html.ActionLink("Cancelar Reserva", "Index", "ReservaCancelada")%></li>
-                <li><%: Html.ActionLink("Confirmar Reserva", "Index", "ReservaConfirmada")%></li>          
+                <ul id="menu">         
                     <li><%: Html.ActionLink("Espacio Deportivo", "Index", "EspacioDeportivo")%></li>
-                     <li><%: Html.ActionLink("Horario Deportivo", "Index", "HorarioDeportivo")%></li>
                     <li><%: Html.ActionLink("Regla Espacio Deportivo", "Index", "ReglaEspacioDeportivo")%></li>
+                     <li><%: Html.ActionLink("Horario Espacio Deportivo", "Index", "HorarioDeportivo")%></li>
+
+                <li><%: Html.ActionLink("Confirmar Reserva", "Index", "ReservaConfirmada")%></li>   
+                <li><%: Html.ActionLink("Cancelar Reserva", "Index", "ReservaCancelada")%></li>  
+
                     <li><%: Html.ActionLink("Página principal", "Index", "Home")%></li>
                     <li><%: Html.ActionLink("Acerca de", "About", "Home")%></li>
                     

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.Models.Horario>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Horarios Deportivos
@@ -6,8 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Horarios Deportivos</h2>
-
+    <h2>Horarios Deportivos</h2>    
+    <%: Html.ValidationSummary(true) %>
     <table>
         <tr>
             <th></th>
@@ -26,15 +26,13 @@
     
         <tr>
             <td>
-             <%--   <%: Html.ActionLink("Editar", "Edit", new { Codigo = item.Codigo })%> | --%>
-                <%: Html.ActionLink("Detalles", "Details", new { Codigo = item.Codigo })%> |
-                <%: Html.ActionLink("Eliminar", "Delete", new { Codigo = item.Codigo })%>
+                <%: Html.ActionLink("Horario", "Details", new { Codigo = item.Codigo })%>
             </td>
             <td>
                 <%: item.Codigo %>
             </td>
             <td>
-                <%: item.EspacioDeportivo.Codigo %> - <%: item.EspacioDeportivo.Nombre %>
+                <%: item.Codigo %> - <%: item.Nombre %>
             </td>
             <td>
                 <%: item.Sede.Codigo %> - <%: item.Sede.Nombre %>
@@ -44,9 +42,8 @@
     <% } %>
 
     </table>
-
     <p>
-        <%: Html.ActionLink("Crear","")%>  <%-- , "Create") %>  Le quito el Create ya que un no es implementado del todo--%>
-    </p>
+     <%: Session["Mensaje"]%>
+     </p>
 
 </asp:Content>

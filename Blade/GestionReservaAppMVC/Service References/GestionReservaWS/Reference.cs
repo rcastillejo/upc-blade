@@ -151,27 +151,185 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+    [System.SerializableAttribute()]
+    public partial class ValidationException : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValidationErrorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ValidationError {
+            get {
+                return this.ValidationErrorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValidationErrorField, value) != true)) {
+                    this.ValidationErrorField = value;
+                    this.RaisePropertyChanged("ValidationError");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Horario", Namespace="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio")]
+    [System.SerializableAttribute()]
+    public partial class Horario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CodigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HoraFinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HoraInicioField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Codigo {
+            get {
+                return this.CodigoField;
+            }
+            set {
+                if ((this.CodigoField.Equals(value) != true)) {
+                    this.CodigoField = value;
+                    this.RaisePropertyChanged("Codigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Dia {
+            get {
+                return this.DiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiaField, value) != true)) {
+                    this.DiaField = value;
+                    this.RaisePropertyChanged("Dia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HoraFin {
+            get {
+                return this.HoraFinField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HoraFinField, value) != true)) {
+                    this.HoraFinField = value;
+                    this.RaisePropertyChanged("HoraFin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HoraInicio {
+            get {
+                return this.HoraInicioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HoraInicioField, value) != true)) {
+                    this.HoraInicioField = value;
+                    this.RaisePropertyChanged("HoraInicio");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GestionReservaWS.IGestionReservaService")]
     public interface IGestionReservaService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/obtenerEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/obtenerEspacioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/obtenerEspacioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo obtenerEspacio(int codigo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/listarEspacioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/listarEspacioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo[] listarEspacio();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/crearEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/crearEspacioResponse")]
-        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo crearEspacio(string nombre, int sede);
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/crearEspacioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        string crearEspacio(string nombre, int sede);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/actualizarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/actualizarEspacioResponse")]
-        GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede);
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/actualizarEspacioValidationExceptionFau" +
+            "lt", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        string actualizarEspacio(int codigo, string nombre, int sede);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/eliminarEspacio", ReplyAction="http://tempuri.org/IGestionReservaService/eliminarEspacioResponse")]
-        void eliminarEspacio(int Codigo);
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/eliminarEspacioValidationExceptionFault" +
+            "", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        string eliminarEspacio(int Codigo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarSede", ReplyAction="http://tempuri.org/IGestionReservaService/listarSedeResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/listarSedeValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.Sede[] listarSede();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/registrarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/registrarHorarioResponse")]
+        string registrarHorario(int codigo, string dia, string horaInicio, string horaFin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/obtenerHorario", ReplyAction="http://tempuri.org/IGestionReservaService/obtenerHorarioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.Horario obtenerHorario(int codigo, string dia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/eliminarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/eliminarHorarioResponse")]
+        string eliminarHorario(int codigo, string dia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/listarHorarioResponse")]
+        GestionReservaAppMVC.GestionReservaWS.Horario[] listarHorario(int codigo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -209,20 +367,36 @@ namespace GestionReservaAppMVC.GestionReservaWS {
             return base.Channel.listarEspacio();
         }
         
-        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo crearEspacio(string nombre, int sede) {
+        public string crearEspacio(string nombre, int sede) {
             return base.Channel.crearEspacio(nombre, sede);
         }
         
-        public GestionReservaAppMVC.GestionReservaWS.EspacioDeportivo actualizarEspacio(int codigo, string nombre, int sede) {
+        public string actualizarEspacio(int codigo, string nombre, int sede) {
             return base.Channel.actualizarEspacio(codigo, nombre, sede);
         }
         
-        public void eliminarEspacio(int Codigo) {
-            base.Channel.eliminarEspacio(Codigo);
+        public string eliminarEspacio(int Codigo) {
+            return base.Channel.eliminarEspacio(Codigo);
         }
         
         public GestionReservaAppMVC.GestionReservaWS.Sede[] listarSede() {
             return base.Channel.listarSede();
+        }
+        
+        public string registrarHorario(int codigo, string dia, string horaInicio, string horaFin) {
+            return base.Channel.registrarHorario(codigo, dia, horaInicio, horaFin);
+        }
+        
+        public GestionReservaAppMVC.GestionReservaWS.Horario obtenerHorario(int codigo, string dia) {
+            return base.Channel.obtenerHorario(codigo, dia);
+        }
+        
+        public string eliminarHorario(int codigo, string dia) {
+            return base.Channel.eliminarHorario(codigo, dia);
+        }
+        
+        public GestionReservaAppMVC.GestionReservaWS.Horario[] listarHorario(int codigo) {
+            return base.Channel.listarHorario(codigo);
         }
     }
 }

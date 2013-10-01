@@ -4,6 +4,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using GestionReservaServices.Dominio;
+using System.Web.Script.Serialization;
+using System.Net;
+using System.IO;
+using HorarioServices.Excepcion;
 
 namespace GestionReservaServices
 {
@@ -48,5 +53,125 @@ namespace GestionReservaServices
         {
             return proxySede.listar().ToList();
         }
+
+
+        public string registrarHorario(int codigo, string dia, string horaInicio, string horaFin)
+        {
+
+            try
+            {
+                //Reservar
+                Horario horario = new Horario() { 
+                    Codigo = codigo,
+                    Dia = dia,
+                    HoraInicio = horaInicio,
+                    HoraFin = horaFin
+                };
+                
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string horarioJson = js.Serialize(horario);
+                byte[] data = Encoding.UTF8.GetBytes(horarioJson);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios");
+                req.Method = "POST";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                return "El horario del espacio deportivo registrado exitosamente";
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string alumnoJson = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(alumnoJson);
+                return error.Mensaje;
+            }
+        }
+
+        public Dominio.Horario obtenerHorario(int codigo, string dia)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios/" + codigo + "/" + dia);
+            req.Method = "GET";
+            req.ContentType = "application/json";
+
+            try{
+
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                Horario horarioObtendido = js.Deserialize<Horario>(horarioObtenidoJson);
+                return horarioObtendido;
+            
+              }catch (WebException e){
+                  HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                  StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                  string resultado = reader2.ReadToEnd();
+                  JavaScriptSerializer js2 = new JavaScriptSerializer();
+                  Error error = js2.Deserialize<Error>(resultado);
+                  throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+              }
+        }
+
+
+        public List<Dominio.Horario> listarHorario(int codigo)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios/" + codigo );
+            req.Method = "GET";
+            req.ContentType = "application/json";
+
+            try
+            {
+
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Horario> horarioObtendidos = js.Deserialize<List<Horario>>(horarioObtenidoJson);
+                return horarioObtendidos;
+            
+              }catch (WebException e){
+                  HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                  StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                  string resultado = reader2.ReadToEnd();
+                  JavaScriptSerializer js2 = new JavaScriptSerializer();
+                  Error error = js2.Deserialize<Error>(resultado);
+                  throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+              }
+        }
+
+
+        public string eliminarHorario(int codigo, string dia)
+        {
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios/" + codigo + "/" + dia);
+                req.Method = "DELETE";
+                req.ContentType = "application/json";
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string alumnoObtenidoJson = reader.ReadToEnd();
+
+                return "EL horario ha sido eliminado satisfactoriamente";
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string alumnoJson = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(alumnoJson);
+                return error.Mensaje;
+            }
+        }
+
     }
 }

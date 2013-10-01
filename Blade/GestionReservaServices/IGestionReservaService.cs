@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using GestionReservaServices.EspacioDeportivoWS;
+using GestionReservaServices.Dominio;
 
 namespace GestionReservaServices
 {
@@ -36,5 +37,22 @@ namespace GestionReservaServices
         [FaultContract(typeof(ValidationException))]
         [OperationContract]
         List<SedeWS.Sede> listarSede();
+
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        String registrarHorario(int codigo, string dia, string horaInicio, string horaFin);
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        Horario obtenerHorario(int codigo, string dia);
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        string eliminarHorario(int codigo, string dia);
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        List<Horario> listarHorario(int codigo);
     }
 }

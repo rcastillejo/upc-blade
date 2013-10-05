@@ -15,7 +15,12 @@ namespace HorarioServices
     {
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "Horarios", ResponseFormat = WebMessageFormat.Json)]
-        Horario RegistrarHorario(Horario horarioACrear);
+        String RegistrarHorario(Horario horarioACrear);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", UriTemplate = "Horarios", ResponseFormat = WebMessageFormat.Json)]
+        String ActualizarHorario(Horario horarioACrear);
 
         //En caso se decida agregar variables, /dni={dni}&nom={nombre}
         [OperationContract]

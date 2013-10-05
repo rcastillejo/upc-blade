@@ -16,7 +16,7 @@ namespace HorarioServices
     {
         private HorarioDAO dao = new HorarioDAO();
 
-        public Horario RegistrarHorario(Horario horarioACrear)
+        public String RegistrarHorario(Horario horarioACrear)
         {
             Horario horarioObtenido = dao.Obtener(horarioACrear.Codigo, horarioACrear.Dia);
             Horario horarioRegistrado = null;
@@ -25,6 +25,46 @@ namespace HorarioServices
                 horarioRegistrado = dao.Crear(horarioACrear);
             }
             else 
+            {
+                throw new WebFaultException<Error>(
+                     new Error()
+                     {
+                         Codigo = "ERR003",
+                         Mensaje = "Horario ya registrado"
+                     },
+                         HttpStatusCode.InternalServerError);
+            }
+
+            if (horarioRegistrado == null)
+            {
+                throw new WebFaultException<Error>(
+                     new Error()
+                     {
+                         Codigo = "ERR002",
+                         Mensaje = "No fue posible registrar el horario"
+                     },
+                         HttpStatusCode.InternalServerError);
+            }
+
+            return "El horario del espacio deportivo registrado exitosamente";
+        }
+
+
+        public String ActualizarHorario(Horario horarioACrear)
+        {
+            Horario horarioObtenido = dao.Obtener(horarioACrear.Codigo, horarioACrear.Dia);
+            Horario horarioRegistrado = null;
+            if (horarioObtenido == null)
+            {
+                throw new WebFaultException<Error>(
+                     new Error()
+                     {
+                         Codigo = "ERR001",
+                         Mensaje = "Horario no disponible"
+                     },
+                         HttpStatusCode.InternalServerError);
+            }
+            else
             {
                 horarioRegistrado = dao.Modificar(horarioACrear);
             }
@@ -35,12 +75,12 @@ namespace HorarioServices
                      new Error()
                      {
                          Codigo = "ERR002",
-                         Mensaje = "No fue posible rewistrar el horario"
+                         Mensaje = "No fue posible registrar el horario"
                      },
                          HttpStatusCode.InternalServerError);
             }
 
-            return horarioRegistrado;
+            return "El horario del espacio deportivo registrado exitosamente";
         }
 
         public Horario ObtenerHorario(string codigo, string dia)

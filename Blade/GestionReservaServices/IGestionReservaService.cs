@@ -41,7 +41,11 @@ namespace GestionReservaServices
 
         [FaultContract(typeof(ValidationException))]
         [OperationContract]
-        String registrarHorario(int codigo, string dia, string horaInicio, string horaFin);
+        string registrarHorario(int codigo, string dia, string horaInicio, string horaFin);
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        string actualizarHorario(int codigo, string dia, string horaInicio, string horaFin);
 
         [FaultContract(typeof(ValidationException))]
         [OperationContract]

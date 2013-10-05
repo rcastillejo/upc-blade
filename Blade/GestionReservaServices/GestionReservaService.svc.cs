@@ -83,16 +83,56 @@ namespace GestionReservaServices
                 var res = (HttpWebResponse)req.GetResponse();
                 StreamReader reader = new StreamReader(res.GetResponseStream());
                 string horarioObtenidoJson = reader.ReadToEnd();
-                return "El horario del espacio deportivo registrado exitosamente";
+                return horarioObtenidoJson;
+            }catch (WebException e){
+                  HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                  StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                  string resultado = reader2.ReadToEnd();
+                  JavaScriptSerializer js2 = new JavaScriptSerializer();
+                  Error error = js2.Deserialize<Error>(resultado);
+                  throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+              }
+        }
+
+        public string actualizarHorario(int codigo, string dia, string horaInicio, string horaFin)
+        {
+
+            try
+            {
+                //Reservar
+                Horario horario = new Horario()
+                {
+                    Codigo = codigo,
+                    Dia = dia,
+                    HoraInicio = horaInicio,
+                    HoraFin = horaFin
+                };
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string horarioJson = js.Serialize(horario);
+                byte[] data = Encoding.UTF8.GetBytes(horarioJson);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios");
+                req.Method = "PUT";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                return horarioObtenidoJson;
             }
             catch (WebException e)
             {
                 HttpWebResponse resError = (HttpWebResponse)e.Response;//
                 StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                string alumnoJson = reader2.ReadToEnd();
+                string resultado = reader2.ReadToEnd();
                 JavaScriptSerializer js2 = new JavaScriptSerializer();
-                Error error = js2.Deserialize<Error>(alumnoJson);
-                return error.Mensaje;
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
             }
         }
 
@@ -110,15 +150,17 @@ namespace GestionReservaServices
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 Horario horarioObtendido = js.Deserialize<Horario>(horarioObtenidoJson);
                 return horarioObtendido;
-            
-              }catch (WebException e){
-                  HttpWebResponse resError = (HttpWebResponse)e.Response;//
-                  StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                  string resultado = reader2.ReadToEnd();
-                  JavaScriptSerializer js2 = new JavaScriptSerializer();
-                  Error error = js2.Deserialize<Error>(resultado);
-                  throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
-              }
+
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
         }
 
 
@@ -166,10 +208,10 @@ namespace GestionReservaServices
             {
                 HttpWebResponse resError = (HttpWebResponse)e.Response;//
                 StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                string alumnoJson = reader2.ReadToEnd();
+                string resultado = reader2.ReadToEnd();
                 JavaScriptSerializer js2 = new JavaScriptSerializer();
-                Error error = js2.Deserialize<Error>(alumnoJson);
-                return error.Mensaje;
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
             }
         }
 

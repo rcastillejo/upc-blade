@@ -26,7 +26,7 @@
                 <%: Html.LabelFor(model => model.Dia) %>
             </div>
             <div class="editor-field">                
-                <%: Html.DropDownListFor(model => model.Dia, new SelectList((List<String>)Session["dias"]))%>
+                <%: Html.DropDownListFor(model => model.Dia, new SelectList((List<String>)Session["dias"]), new Dictionary<string, object>() { { "readonly", "true" }, {"disabled", "true"} })%>
                 <%: Html.ValidationMessageFor(model => model.Dia)%>
             </div>
             

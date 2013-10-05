@@ -102,6 +102,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="actualizarHorario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="horaInicio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="horaFin" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizarHorarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="actualizarHorarioResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="obtenerHorario">
     <xs:complexType>
       <xs:sequence>

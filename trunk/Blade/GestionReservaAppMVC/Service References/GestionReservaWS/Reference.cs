@@ -320,15 +320,26 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         GestionReservaAppMVC.GestionReservaWS.Sede[] listarSede();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/registrarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/registrarHorarioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/registrarHorarioValidationExceptionFaul" +
+            "t", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         string registrarHorario(int codigo, string dia, string horaInicio, string horaFin);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/actualizarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/actualizarHorarioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/actualizarHorarioValidationExceptionFau" +
+            "lt", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        string actualizarHorario(int codigo, string dia, string horaInicio, string horaFin);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/obtenerHorario", ReplyAction="http://tempuri.org/IGestionReservaService/obtenerHorarioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/obtenerHorarioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.Horario obtenerHorario(int codigo, string dia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/eliminarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/eliminarHorarioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/eliminarHorarioValidationExceptionFault" +
+            "", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         string eliminarHorario(int codigo, string dia);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/listarHorarioResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/listarHorarioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.Horario[] listarHorario(int codigo);
     }
     
@@ -385,6 +396,10 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         
         public string registrarHorario(int codigo, string dia, string horaInicio, string horaFin) {
             return base.Channel.registrarHorario(codigo, dia, horaInicio, horaFin);
+        }
+        
+        public string actualizarHorario(int codigo, string dia, string horaInicio, string horaFin) {
+            return base.Channel.actualizarHorario(codigo, dia, horaInicio, horaFin);
         }
         
         public GestionReservaAppMVC.GestionReservaWS.Horario obtenerHorario(int codigo, string dia) {

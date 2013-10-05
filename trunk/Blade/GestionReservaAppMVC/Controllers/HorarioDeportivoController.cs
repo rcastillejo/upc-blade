@@ -95,6 +95,7 @@ namespace GestionReservaAppMVC.Controllers
         // GET: /HorarioDeportivo/Edit/5
         public ActionResult EditItem(int codigo, string dia)//(int codespacio,int codsede)
         {
+            Session["Mensaje"] = "";
             try{
                 Horario model = proxy.obtenerHorario(codigo, dia);
                 return View(model);            
@@ -110,11 +111,12 @@ namespace GestionReservaAppMVC.Controllers
         [HttpPost]
         public ActionResult EditItem(int codigo, string dia, FormCollection collection)
         {
+            Session["Mensaje"] = "";
             try
             {
                 string horaInicio= (collection["HoraInicio"]);
                 string horaFin = (collection["HoraFin"]);
-                string mensaje = proxy.registrarHorario(codigo, dia, horaInicio, horaFin);
+                string mensaje = proxy.actualizarHorario(codigo, dia, horaInicio, horaFin);
                 Session["detHorarios"] = proxy.listarHorario(codigo).ToList();
                 Session["Mensaje"] = mensaje;
             }
@@ -130,17 +132,18 @@ namespace GestionReservaAppMVC.Controllers
         //******* Muestra pagina para ingresar datos de creacion *******
         public ActionResult CreateItem()
         {
+            Session["Mensaje"] = "";
             int codigo = int.Parse(Session["CodigoCreate"].ToString());
             Horario model = new Horario() { Codigo=codigo};
             return View(model);
         } 
 
         // POST: /HorarioDeportivo/Create
-        //******* Recibe los datos del formulario y realiza creacion ********
         [HttpPost]
         public ActionResult CreateItem(FormCollection collection)
         {
-            Session["CodigoCreate"] = "";
+            Session["Mensaje"] = "";
+            //Session["CodigoCreate"] = "";
             try
             {
                 int codigo = int.Parse(collection["Codigo"]);
@@ -163,6 +166,7 @@ namespace GestionReservaAppMVC.Controllers
         // GET: /HorarioDeportivo/Delete/5
         public ActionResult DeleteItem(int codigo,  string dia)
         {
+            Session["Mensaje"] = "";
             try
             {
                 Horario model = proxy.obtenerHorario(codigo, dia);
@@ -181,6 +185,7 @@ namespace GestionReservaAppMVC.Controllers
         [HttpPost]
         public ActionResult DeleteItem(int codigo,  string dia, FormCollection collection)
         {
+            Session["Mensaje"] = "";
             try
             {
                 // TODO: Add delete logic here

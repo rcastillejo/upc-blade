@@ -215,5 +215,75 @@ namespace GestionReservaServices
             }
         }
 
+
+        public string registrarReserva(int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin)
+        {
+
+            try
+            {
+                Reserva reserva = new Reserva()
+                {
+                    CodigoEspacio = codigoEspacio,
+                    Dia = dia,
+                    CantidadHoras = cantHoras,
+                    FechaInicio = fechaInicio,
+                    FechaFin = fechaFin
+                };
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string horarioJson = js.Serialize(reserva);
+                byte[] data = Encoding.UTF8.GetBytes(horarioJson);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios");
+                req.Method = "POST";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                return horarioObtenidoJson;
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
+        }
+
+        public List<Reserva> listarReserva()
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios/");
+            req.Method = "GET";
+            req.ContentType = "application/json";
+
+            try
+            {
+
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string reservaObtenidoJson = reader.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Reserva> reservaObtendidos = js.Deserialize<List<Reserva>>(reservaObtenidoJson);
+                return reservaObtendidos;
+
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
+        }
     }
 }

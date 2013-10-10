@@ -112,6 +112,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Horario.cs" />
     <Compile Include="Excepcion\Error.cs" />
     <Compile Include="GestionReservaService.svc.cs">

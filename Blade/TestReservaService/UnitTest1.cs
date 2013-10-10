@@ -16,7 +16,7 @@ namespace TestReservaService
         [TestMethod]
         public void CrearOk()
         {
-            string reservaJson = "{\"CodigoEspacio\":1,\"Dia\":\"jueves\",\"FechaInicio\":\"2013/10/09 09:00:00\",\"FechaFin\":\"2013/10/09 11:00:00\",\"CantidadHoras\":2,\"Estado\":\"RESERVADO\"}";
+            string reservaJson = "{\"CodigoEspacio\":1,\"FechaInicio\":\"2013-10-09 09:00:00\",\"CantidadHoras\":2}";
             byte[] data = Encoding.UTF8.GetBytes(reservaJson);
 
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas");
@@ -53,7 +53,7 @@ namespace TestReservaService
          [TestMethod]
         public void Modificar()
         {
-            string reservaJson = "{\"CodigoEspacio\":2,\"Dia\":\"jueves\",\"FechaInicio\":\"2013/10/09 09:00:00\",\"FechaFin\":\"2013/10/09 11:00:00\",\"CantidadHoras\":2,\"Estado\":\"RESERVADO\"}";
+            string reservaJson = "{\"Codigo\":1,\"CodigoEspacio\":2,\"Dia\":\"jueves\",\"FechaInicio\":\"2013-10-09 09:00:00\",\"FechaFin\":\"2013-10-09 11:00:00\",\"CantidadHoras\":2,\"Estado\":\"RESERVADO\"}";
             byte[] data = Encoding.UTF8.GetBytes(reservaJson);
 
 
@@ -69,7 +69,7 @@ namespace TestReservaService
             StreamReader reader = new StreamReader(res.GetResponseStream());
             string reservaObtenidoJson = reader.ReadToEnd();
 
-            Assert.IsTrue(reservaObtenidoJson.Contains("La reserva Cancelada exitosamente "));
+            Assert.IsTrue(reservaObtenidoJson.Contains("La reserva registrada exitosamente"));
         }
     }
 }

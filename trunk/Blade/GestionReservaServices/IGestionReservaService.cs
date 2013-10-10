@@ -58,5 +58,15 @@ namespace GestionReservaServices
         [FaultContract(typeof(ValidationException))]
         [OperationContract]
         List<Horario> listarHorario(int codigo);
+
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        string registrarReserva(int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin);
+
+
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        List<Reserva> listarReserva();
     }
 }

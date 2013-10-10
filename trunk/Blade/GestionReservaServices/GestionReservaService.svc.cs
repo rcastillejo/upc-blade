@@ -234,7 +234,7 @@ namespace GestionReservaServices
                 string horarioJson = js.Serialize(reserva);
                 byte[] data = Encoding.UTF8.GetBytes(horarioJson);
 
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios");
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas");
                 req.Method = "POST";
                 req.ContentLength = data.Length;
                 req.ContentType = "application/json";
@@ -260,9 +260,8 @@ namespace GestionReservaServices
 
         public List<Reserva> listarReserva()
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:22057/Horarios.svc/Horarios/");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas");
             req.Method = "GET";
-            req.ContentType = "application/json";
 
             try
             {

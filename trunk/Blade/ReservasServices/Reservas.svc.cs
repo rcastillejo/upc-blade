@@ -12,6 +12,7 @@ using System.Net;
 using System.Globalization;
 using System.IO;
 using System.Web.Script.Serialization;
+using System.Messaging;
 
 namespace ReservasServices
 {
@@ -68,23 +69,13 @@ namespace ReservasServices
             int horaFin = int.Parse(horario.HoraFin.Substring(0,2));
             int minutoFin = int.Parse(horario.HoraFin.Substring(3));
 
-            if (fecha.Hour < horaInicio || horaFin > fecha.Hour)
+            if (!(horaInicio <= fecha.Hour && fecha.Hour <= horaFin))
             {
                 throw new WebFaultException<Error>(
                         new Error()
                         {
-                            Codigo = "ERR004",
-                            Mensaje = "El espacio deportivo ya ha sido reservado"
-                        },
-                            HttpStatusCode.InternalServerError);
-            }
-            else if (fecha.Minute < minutoInicio || minutoFin > fecha.Minute) {
-
-                throw new WebFaultException<Error>(
-                        new Error()
-                        {
-                            Codigo = "ERR004",
-                            Mensaje = "El espacio deportivo ya ha sido reservado"
+                            Codigo = "ERR006",
+                            Mensaje = "El espacio no se encuentra disponible en este horario"
                         },
                             HttpStatusCode.InternalServerError);
             }
@@ -168,7 +159,41 @@ namespace ReservasServices
 
         public List<Reserva> ListarReservas()
         {
+            //loadFromQueue();
             return dao.ListarTodos();
+        }
+
+
+        private void loadFromQueue()
+        {
+            string rutaCola = @".\private$\bladeReserva";
+            if (!MessageQueue.Exists(rutaCola))
+            {
+                MessageQueue.Create(rutaCola);
+            }
+
+            MessageQueue cola = new MessageQueue(rutaCola);
+            int cantidadMensajes = cola.GetAllMessages().Count();
+
+            while (cantidadMensajes > 0)
+            {
+
+                cola.Formatter = new XmlMessageFormatter(new Type[] { typeof(Reserva) });
+
+                Message mensaje = cola.Receive();
+
+                Reserva reserva = (Reserva)mensaje.Body;
+                try
+                {
+                    RegistrarReserva(reserva);
+                }
+                catch { 
+                
+                }
+
+                cantidadMensajes--;
+            }
+
         }
     }
 }

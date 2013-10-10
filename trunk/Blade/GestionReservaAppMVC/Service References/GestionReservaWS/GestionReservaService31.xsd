@@ -15,4 +15,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfHorario" nillable="true" type="tns:ArrayOfHorario" />
+  <xs:complexType name="ArrayOfReserva">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reserva" nillable="true" type="tns:Reserva" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReserva" nillable="true" type="tns:ArrayOfReserva" />
+  <xs:complexType name="Reserva">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadHoras" type="xs:int" />
+      <xs:element minOccurs="0" name="Codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoEspacio" type="xs:int" />
+      <xs:element minOccurs="0" name="Dia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaFin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaInicio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Reserva" nillable="true" type="tns:Reserva" />
 </xs:schema>

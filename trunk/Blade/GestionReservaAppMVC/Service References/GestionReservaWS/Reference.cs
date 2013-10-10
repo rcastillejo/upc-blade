@@ -289,6 +289,147 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Reserva", Namespace="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio")]
+    [System.SerializableAttribute()]
+    public partial class Reserva : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CantidadHorasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CodigoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CodigoEspacioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FechaFinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FechaInicioField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CantidadHoras {
+            get {
+                return this.CantidadHorasField;
+            }
+            set {
+                if ((this.CantidadHorasField.Equals(value) != true)) {
+                    this.CantidadHorasField = value;
+                    this.RaisePropertyChanged("CantidadHoras");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Codigo {
+            get {
+                return this.CodigoField;
+            }
+            set {
+                if ((this.CodigoField.Equals(value) != true)) {
+                    this.CodigoField = value;
+                    this.RaisePropertyChanged("Codigo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CodigoEspacio {
+            get {
+                return this.CodigoEspacioField;
+            }
+            set {
+                if ((this.CodigoEspacioField.Equals(value) != true)) {
+                    this.CodigoEspacioField = value;
+                    this.RaisePropertyChanged("CodigoEspacio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Dia {
+            get {
+                return this.DiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DiaField, value) != true)) {
+                    this.DiaField = value;
+                    this.RaisePropertyChanged("Dia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Estado {
+            get {
+                return this.EstadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FechaFin {
+            get {
+                return this.FechaFinField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FechaFinField, value) != true)) {
+                    this.FechaFinField = value;
+                    this.RaisePropertyChanged("FechaFin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FechaInicio {
+            get {
+                return this.FechaInicioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FechaInicioField, value) != true)) {
+                    this.FechaInicioField = value;
+                    this.RaisePropertyChanged("FechaInicio");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GestionReservaWS.IGestionReservaService")]
     public interface IGestionReservaService {
@@ -341,6 +482,15 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarHorario", ReplyAction="http://tempuri.org/IGestionReservaService/listarHorarioResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/listarHorarioValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
         GestionReservaAppMVC.GestionReservaWS.Horario[] listarHorario(int codigo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/registrarReserva", ReplyAction="http://tempuri.org/IGestionReservaService/registrarReservaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/registrarReservaValidationExceptionFaul" +
+            "t", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        string registrarReserva(int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGestionReservaService/listarReserva", ReplyAction="http://tempuri.org/IGestionReservaService/listarReservaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GestionReservaAppMVC.GestionReservaWS.ValidationException), Action="http://tempuri.org/IGestionReservaService/listarReservaValidationExceptionFault", Name="ValidationException", Namespace="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion")]
+        GestionReservaAppMVC.GestionReservaWS.Reserva[] listarReserva();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -412,6 +562,14 @@ namespace GestionReservaAppMVC.GestionReservaWS {
         
         public GestionReservaAppMVC.GestionReservaWS.Horario[] listarHorario(int codigo) {
             return base.Channel.listarHorario(codigo);
+        }
+        
+        public string registrarReserva(int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin) {
+            return base.Channel.registrarReserva(codigoEspacio, dia, cantHoras, fechaInicio, fechaFin);
+        }
+        
+        public GestionReservaAppMVC.GestionReservaWS.Reserva[] listarReserva() {
+            return base.Channel.listarReserva();
         }
     }
 }

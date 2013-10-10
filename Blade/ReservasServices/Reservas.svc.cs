@@ -48,7 +48,7 @@ namespace ReservasServices
         private void validarHorario(Reserva reservaACrear)
         {
 
-            Horario horario = obtenerHorario("http://localhost:19528/Reservas.svc/Reservas/1/" + reservaACrear.CodigoEspacio + "/" + reservaACrear.FechaInicio);
+            Horario horario = obtenerHorario("http://localhost:22057/Horarios.svc/Horarios?codigo=" + reservaACrear.CodigoEspacio + "&fecha=" + reservaACrear.FechaInicio);
 
             if (horario == null)
             {
@@ -56,7 +56,7 @@ namespace ReservasServices
                         new Error()
                         {
                             Codigo = "ERR006",
-                            Mensaje = "El espacio no dispinible en este horario"
+                            Mensaje = "El espacio no se encuentra disponible en este horario"
                         },
                             HttpStatusCode.InternalServerError);
             }
@@ -73,8 +73,8 @@ namespace ReservasServices
                 throw new WebFaultException<Error>(
                         new Error()
                         {
-                            Codigo = "ERR006",
-                            Mensaje = "El espacio no dispinible en este horario"
+                            Codigo = "ERR004",
+                            Mensaje = "El espacio deportivo ya ha sido reservado"
                         },
                             HttpStatusCode.InternalServerError);
             }
@@ -83,8 +83,8 @@ namespace ReservasServices
                 throw new WebFaultException<Error>(
                         new Error()
                         {
-                            Codigo = "ERR006",
-                            Mensaje = "El espacio no dispinible en este horario"
+                            Codigo = "ERR004",
+                            Mensaje = "El espacio deportivo ya ha sido reservado"
                         },
                             HttpStatusCode.InternalServerError);
             }

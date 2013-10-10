@@ -137,7 +137,7 @@ namespace ReservasServices.Persistencia
         public Reserva Modificar(Reserva reservaAModificar)
         {
             Reserva reservaModificado = null;
-            string sql = "UPDATE TB_RESERVA SET cod_esp=@codEsp, dia=DATENAME(dw,@fechaFin), cant_hora=@cantHora, fecha_inicio=@fechaIni, fecha_fin=@fechaFin, estado=@estado WHERE codigo=@cod";
+            string sql = "SET LANGUAGE Spanish; UPDATE TB_RESERVA SET cod_esp=@codEsp, dia=DATENAME(dw,@fechaFin), cant_hora=@cantHora, fecha_inicio=@fechaIni, fecha_fin=@fechaFin, estado=@estado WHERE codigo=@cod";
             using (SqlConnection con = new SqlConnection(ConexionUtil.ObtenerCadena()))
             {
                 con.Open();

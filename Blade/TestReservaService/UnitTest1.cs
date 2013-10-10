@@ -48,5 +48,28 @@ namespace TestReservaService
 
             Assert.IsTrue(reservas.Count > 0);
         }
+
+        //reserva.Codigo, reserva.CodigoEspacio, reserva.Dia, reserva.CantidadHoras, reserva.FechaInicio, reserva.FechaFin, reserva.Estado
+         [TestMethod]
+        public void Modificar()
+        {
+            string reservaJson = "{\"CodigoEspacio\":2,\"Dia\":\"jueves\",\"FechaInicio\":\"2013/10/09 09:00:00\",\"FechaFin\":\"2013/10/09 11:00:00\",\"CantidadHoras\":2,\"Estado\":\"RESERVADO\"}";
+            byte[] data = Encoding.UTF8.GetBytes(reservaJson);
+
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas");
+            req.Method = "PUT";
+            req.ContentLength = data.Length;
+            req.ContentType = "application/json";
+
+            var reqStream = req.GetRequestStream();
+            reqStream.Write(data, 0, data.Length);
+
+            var res = (HttpWebResponse)req.GetResponse();
+            StreamReader reader = new StreamReader(res.GetResponseStream());
+            string reservaObtenidoJson = reader.ReadToEnd();
+
+            Assert.IsTrue(reservaObtenidoJson.Contains("La reserva Cancelada exitosamente "));
+        }
     }
 }

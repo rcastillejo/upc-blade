@@ -163,4 +163,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="registrarReserva">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigoEspacio" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cantHoras" type="xs:int" />
+        <xs:element minOccurs="0" name="fechaInicio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fechaFin" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registrarReservaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="registrarReservaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarReserva">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarReservaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="listarReservaResult" nillable="true" type="q6:ArrayOfReserva" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

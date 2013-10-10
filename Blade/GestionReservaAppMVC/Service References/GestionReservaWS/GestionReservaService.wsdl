@@ -108,6 +108,24 @@
   <wsdl:message name="IGestionReservaService_listarHorario_ValidationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q11:ValidationException" />
   </wsdl:message>
+  <wsdl:message name="IGestionReservaService_registrarReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:registrarReserva" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_registrarReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:registrarReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_registrarReserva_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q12:ValidationException" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarReserva" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_listarReserva_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q13:ValidationException" />
+  </wsdl:message>
   <wsdl:portType name="IGestionReservaService">
     <wsdl:operation name="obtenerEspacio">
       <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/obtenerEspacio" message="tns:IGestionReservaService_obtenerEspacio_InputMessage" />
@@ -163,6 +181,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/listarHorario" message="tns:IGestionReservaService_listarHorario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/listarHorarioResponse" message="tns:IGestionReservaService_listarHorario_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/listarHorarioValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_listarHorario_ValidationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/registrarReserva" message="tns:IGestionReservaService_registrarReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/registrarReservaResponse" message="tns:IGestionReservaService_registrarReserva_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/registrarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_registrarReserva_ValidationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/listarReserva" message="tns:IGestionReservaService_listarReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/listarReservaResponse" message="tns:IGestionReservaService_listarReserva_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/listarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_listarReserva_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGestionReservaService" type="tns:IGestionReservaService">
@@ -289,6 +317,30 @@
     </wsdl:operation>
     <wsdl:operation name="listarHorario">
       <soap:operation soapAction="http://tempuri.org/IGestionReservaService/listarHorario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="registrarReserva">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/registrarReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listarReserva">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/listarReserva" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

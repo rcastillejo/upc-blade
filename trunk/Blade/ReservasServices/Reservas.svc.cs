@@ -9,6 +9,9 @@ using ReservasServices.Dominio;
 using System.ServiceModel.Web;
 using ReservasServices.Excepcion;
 using System.Net;
+using System.Globalization;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace ReservasServices
 {
@@ -17,10 +20,84 @@ namespace ReservasServices
     {
 
 
+        private static string DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
         private ReservaDAO dao = new ReservaDAO();
+
+        
+        private string addHour(String s, int hour){
+            DateTime date = DateTime.ParseExact(s, DATEFORMAT, CultureInfo.InvariantCulture);
+            return date.AddHours(hour).ToString(DATEFORMAT);
+        }
+
+        private Horario obtenerHorario(String url){
+        
+            
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "GET";
+
+
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            StreamReader reader = new StreamReader(res.GetResponseStream());
+            string reservaObtenidoJson = reader.ReadToEnd();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Horario obtenido = js.Deserialize<Horario>(reservaObtenidoJson);
+            return obtenido;
+
+        }
+
+        private void validarHorario(Reserva reservaACrear)
+        {
+
+            Horario horario = obtenerHorario("http://localhost:19528/Reservas.svc/Reservas/1/" + reservaACrear.CodigoEspacio + "/" + reservaACrear.FechaInicio);
+
+            if (horario == null)
+            {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR006",
+                            Mensaje = "El espacio no dispinible en este horario"
+                        },
+                            HttpStatusCode.InternalServerError);
+            }
+
+            DateTime fecha = DateTime.ParseExact(reservaACrear.FechaInicio, DATEFORMAT, CultureInfo.InvariantCulture);
+            int horaInicio = int.Parse(horario.HoraInicio.Substring(0,2));
+            int minutoInicio = int.Parse(horario.HoraInicio.Substring(3));
+
+            int horaFin = int.Parse(horario.HoraFin.Substring(0,2));
+            int minutoFin = int.Parse(horario.HoraFin.Substring(3));
+
+            if (fecha.Hour < horaInicio || horaFin > fecha.Hour)
+            {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR006",
+                            Mensaje = "El espacio no dispinible en este horario"
+                        },
+                            HttpStatusCode.InternalServerError);
+            }
+            else if (fecha.Minute < minutoInicio || minutoFin > fecha.Minute) {
+
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR006",
+                            Mensaje = "El espacio no dispinible en este horario"
+                        },
+                            HttpStatusCode.InternalServerError);
+            }
+
+        }
 
         public string RegistrarReserva(Reserva reservaACrear)
         {
+
+            validarHorario(reservaACrear);
+
+            reservaACrear.FechaFin = addHour(reservaACrear.FechaInicio, reservaACrear.CantidadHoras);
+
             List<Reserva> reservaObtenidos = dao.ValidarDisponibilidad(reservaACrear);
             Reserva reservaReservada = null;
             if (reservaObtenidos.Count > 0) {
@@ -59,6 +136,8 @@ namespace ReservasServices
 
         public string ActualizarReserva(Reserva reservaAModificar)
         {
+            reservaAModificar.FechaFin = addHour(reservaAModificar.FechaInicio, reservaAModificar.CantidadHoras);
+            
             Reserva reservaActualizada = null;
             reservaActualizada = dao.Modificar(reservaAModificar);
             return "La reserva registrada exitosamente (" + reservaActualizada.Codigo + ")";

@@ -44,7 +44,7 @@ namespace ReservasServices.Persistencia
         {
             int codigo = SelectMax();
             Reserva reservaCreado = null;
-            string sql = "INSERT INTO TB_RESERVA VALUES(@cod,@codEsp,@dia,@cantHora,@fecIni,@fecFin,@estado)";
+            string sql = "SET LANGUAGE Spanish; INSERT INTO TB_RESERVA VALUES(@cod,@codEsp,DATENAME(dw,@fecIni),@cantHora,@fecIni,@fecFin,@estado)";
             using (SqlConnection con = new SqlConnection(ConexionUtil.ObtenerCadena()))
             {
                 con.Open();
@@ -52,7 +52,6 @@ namespace ReservasServices.Persistencia
                 {
                     com.Parameters.Add(new SqlParameter("@cod", codigo));
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaACrear.CodigoEspacio));
-                    com.Parameters.Add(new SqlParameter("@dia", reservaACrear.Dia));
                     com.Parameters.Add(new SqlParameter("@cantHora", reservaACrear.CantidadHoras));
                     com.Parameters.Add(new SqlParameter("@fecIni", reservaACrear.FechaInicio));
                     com.Parameters.Add(new SqlParameter("@fecFin", reservaACrear.FechaFin));
@@ -101,7 +100,7 @@ namespace ReservasServices.Persistencia
         {
             Reserva reservaEncontrado = null;
             List<Reserva> reservas = new List<Reserva>();
-            string sql = "SELECT * FROM TB_RESERVA WHERE cod_esp=@codEsp AND dia=@dia "+
+            string sql = "SELECT * FROM TB_RESERVA WHERE cod_esp=@codEsp "+
                 " AND ((@fecIni between fecha_inicio AND fecha_fin) OR (@fecFin between fecha_inicio AND fecha_fin))";
             using (SqlConnection con = new SqlConnection(ConexionUtil.ObtenerCadena()))
             {
@@ -109,7 +108,6 @@ namespace ReservasServices.Persistencia
                 using (SqlCommand com = new SqlCommand(sql, con))
                 {
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaAValidar.CodigoEspacio));
-                    com.Parameters.Add(new SqlParameter("@dia", reservaAValidar.Dia));
                     com.Parameters.Add(new SqlParameter("@fecIni", reservaAValidar.FechaInicio));
                     com.Parameters.Add(new SqlParameter("@fecFin", reservaAValidar.FechaFin));
                     using (SqlDataReader resultado = com.ExecuteReader())
@@ -139,7 +137,7 @@ namespace ReservasServices.Persistencia
         public Reserva Modificar(Reserva reservaAModificar)
         {
             Reserva reservaModificado = null;
-            string sql = "UPDATE TB_RESERVA SET cod_esp=@codEsp, dia=@dia, cant_hora=@cantHora, fecha_inicio=@fechaIni, fecha_fin=@fechaFin, estado=@estado WHERE cod=@cod";
+            string sql = "UPDATE TB_RESERVA SET cod_esp=@codEsp, dia=DATENAME(dw,@fechaFin), cant_hora=@cantHora, fecha_inicio=@fechaIni, fecha_fin=@fechaFin, estado=@estado WHERE codigo=@cod";
             using (SqlConnection con = new SqlConnection(ConexionUtil.ObtenerCadena()))
             {
                 con.Open();
@@ -147,7 +145,6 @@ namespace ReservasServices.Persistencia
                 {
                     com.Parameters.Add(new SqlParameter("@cod", reservaAModificar.Codigo));
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaAModificar.CodigoEspacio));
-                    com.Parameters.Add(new SqlParameter("@dia", reservaAModificar.Dia));
                     com.Parameters.Add(new SqlParameter("@cantHora", reservaAModificar.CantidadHoras));
                     com.Parameters.Add(new SqlParameter("@fechaIni", reservaAModificar.FechaInicio));
                     com.Parameters.Add(new SqlParameter("@fechaFin", reservaAModificar.FechaFin));

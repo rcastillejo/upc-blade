@@ -50,6 +50,7 @@ namespace ReservasServices
             }
 
             Reserva reservaRegistrado = null;
+            reservaACrear.Estado = Estado.RESERVADO;
 
             reservaRegistrado = dao.Crear(reservaACrear);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using ReservasServices.Dominio;
+using System.Globalization;
 
 namespace ReservasServices.Persistencia
 {
@@ -53,8 +54,8 @@ namespace ReservasServices.Persistencia
                     com.Parameters.Add(new SqlParameter("@cod", codigo));
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaACrear.CodigoEspacio));
                     com.Parameters.Add(new SqlParameter("@cantHora", reservaACrear.CantidadHoras));
-                    com.Parameters.Add(new SqlParameter("@fecIni", reservaACrear.FechaInicio));
-                    com.Parameters.Add(new SqlParameter("@fecFin", reservaACrear.FechaFin));
+                    com.Parameters.Add(new SqlParameter("@fecIni", DateTime.ParseExact(reservaACrear.FechaInicio, DATEFORMAT, CultureInfo.InvariantCulture)));
+                    com.Parameters.Add(new SqlParameter("@fecFin", DateTime.ParseExact(reservaACrear.FechaFin, DATEFORMAT, CultureInfo.InvariantCulture)));
                     com.Parameters.Add(new SqlParameter("@estado", reservaACrear.Estado));
                     com.ExecuteNonQuery();
                 }
@@ -108,8 +109,8 @@ namespace ReservasServices.Persistencia
                 using (SqlCommand com = new SqlCommand(sql, con))
                 {
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaAValidar.CodigoEspacio));
-                    com.Parameters.Add(new SqlParameter("@fecIni", reservaAValidar.FechaInicio));
-                    com.Parameters.Add(new SqlParameter("@fecFin", reservaAValidar.FechaFin));
+                    com.Parameters.Add(new SqlParameter("@fecIni", DateTime.ParseExact(reservaAValidar.FechaInicio, DATEFORMAT, CultureInfo.InvariantCulture)));
+                    com.Parameters.Add(new SqlParameter("@fecFin", DateTime.ParseExact(reservaAValidar.FechaFin, DATEFORMAT, CultureInfo.InvariantCulture)));
                     using (SqlDataReader resultado = com.ExecuteReader())
                     {
                         if (resultado.Read())
@@ -146,8 +147,8 @@ namespace ReservasServices.Persistencia
                     com.Parameters.Add(new SqlParameter("@cod", reservaAModificar.Codigo));
                     com.Parameters.Add(new SqlParameter("@codEsp", reservaAModificar.CodigoEspacio));
                     com.Parameters.Add(new SqlParameter("@cantHora", reservaAModificar.CantidadHoras));
-                    com.Parameters.Add(new SqlParameter("@fechaIni", reservaAModificar.FechaInicio));
-                    com.Parameters.Add(new SqlParameter("@fechaFin", reservaAModificar.FechaFin));
+                    com.Parameters.Add(new SqlParameter("@fechaIni", DateTime.ParseExact(reservaAModificar.FechaInicio, DATEFORMAT, CultureInfo.InvariantCulture)));
+                    com.Parameters.Add(new SqlParameter("@fechaFin", DateTime.ParseExact(reservaAModificar.FechaFin, DATEFORMAT, CultureInfo.InvariantCulture)));
                     com.Parameters.Add(new SqlParameter("@estado", reservaAModificar.Estado));
                     com.ExecuteNonQuery();
                 }

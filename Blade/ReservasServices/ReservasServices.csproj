@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dominio\Estado.cs" />
+    <Compile Include="Dominio\Horario.cs" />
     <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Excepcion\Error.cs" />
     <Compile Include="IReservas.cs" />

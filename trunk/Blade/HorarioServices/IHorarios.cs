@@ -26,6 +26,10 @@ namespace HorarioServices
         [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "Horarios/{codigo}/{dia}", ResponseFormat = WebMessageFormat.Json)]
         Horario ObtenerHorario(string codigo, string dia);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "Horarios?codigo={codigo}&fecha={fecha}", ResponseFormat = WebMessageFormat.Json)]
+        Horario ObtenerHorarioPorFecha(string codigo, string fecha);
         
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "Horarios/{codigo}/{dia}", ResponseFormat = WebMessageFormat.Json)]

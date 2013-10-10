@@ -58,6 +58,37 @@ namespace HoarioServices.Persistencia
             }
             return horarioEncontrado;
         }
+
+        public Horario ObtenerPorFecha(int codigo, string fecha)
+        {
+            Horario horarioEncontrado = null;
+            string sql = "SET LANGUAGE Spanish; SELECT * FROM TB_HORARIO WHERE cod_esp=@cod AND dia=DATENAME(DW,@fecha)";
+            using (SqlConnection con = new SqlConnection(ConexionUtil.ObtenerCadena()))
+            {
+                con.Open();
+                using (SqlCommand com = new SqlCommand(sql, con))
+                {
+                    com.Parameters.Add(new SqlParameter("@cod", codigo));
+                    com.Parameters.Add(new SqlParameter("@fecha", fecha));
+                    using (SqlDataReader resultado = com.ExecuteReader())
+                    {
+                        if (resultado.Read())
+                        {
+                            horarioEncontrado = new Horario()
+                            {
+                                Codigo = (int)resultado["cod_esp"],
+                                Dia = (string)resultado["dia"],
+                                HoraInicio = (string)resultado["hora_inicio"],
+                                HoraFin = (string)resultado["hora_fin"]
+                            };
+                        }
+                    }
+                }
+                con.Close();
+            }
+            return horarioEncontrado;
+        }
+
         public Horario Modificar(Horario horarioAModificar)
         {
             Horario horarioModificado = null;

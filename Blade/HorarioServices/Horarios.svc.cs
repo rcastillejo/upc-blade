@@ -48,8 +48,7 @@ namespace HorarioServices
 
             return "El horario del espacio deportivo registrado exitosamente";
         }
-
-
+        
         public String ActualizarHorario(Horario horarioACrear)
         {
             Horario horarioObtenido = dao.Obtener(horarioACrear.Codigo, horarioACrear.Dia);
@@ -95,10 +94,9 @@ namespace HorarioServices
                      },
                          HttpStatusCode.InternalServerError);
             }
-            return dao.Obtener(int.Parse(codigo), dia);
+            return horarioObtenido;
         }
-
-
+        
         public void EliminarHorario(string codigo, string dia)
         {
             dao.Eliminar(int.Parse(codigo), dia);
@@ -107,6 +105,13 @@ namespace HorarioServices
         public List<Horario> ListarHorarios(string codigo)
         {
             return dao.ListarTodos(int.Parse(codigo));
+        }
+
+
+        public Horario ObtenerHorarioPorFecha(string codigo, string fecha)
+        {
+            Horario horarioObtenido = dao.ObtenerPorFecha(int.Parse(codigo), fecha);
+            return horarioObtenido;
         }
     }
 }

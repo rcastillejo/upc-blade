@@ -216,7 +216,7 @@ namespace GestionReservaServices
         }
 
 
-        public string registrarReserva(int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin)
+        public string registrarReserva(int codigoEspacio, int cantHoras, string fechaInicio)
         {
 
             try
@@ -224,10 +224,8 @@ namespace GestionReservaServices
                 Reserva reserva = new Reserva()
                 {
                     CodigoEspacio = codigoEspacio,
-                    Dia = dia,
                     CantidadHoras = cantHoras,
-                    FechaInicio = fechaInicio,
-                    FechaFin = fechaFin
+                    FechaInicio = fechaInicio
                 };
 
                 JavaScriptSerializer js = new JavaScriptSerializer();

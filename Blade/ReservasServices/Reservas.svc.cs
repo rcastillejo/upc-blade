@@ -92,17 +92,14 @@ namespace ReservasServices
             List<Reserva> reservaObtenidos = dao.ValidarDisponibilidad(reservaACrear);
             Reserva reservaReservada = null;
             if (reservaObtenidos.Count > 0) {
-                reservaReservada = reservaObtenidos.Single(delegate(Reserva reserva)
+                foreach (Reserva reserva in reservaObtenidos)
                 {
                     if (reserva.Estado.Equals(Estado.RESERVADO) || reserva.Estado.Equals(Estado.CONFIRMADO))
                     {
-                        return true;
+                        reservaReservada = reserva;
+                        break;
                     }
-                    else
-                    {
-                        return false;
-                    }
-                });
+                }
             }
             
 
@@ -168,7 +165,7 @@ namespace ReservasServices
         {
 
 
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Service1.svc/Service1");
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Mensajes.svc/Mensajes");
             req.Method = "GET";
 
             try

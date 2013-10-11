@@ -331,7 +331,7 @@ namespace GestionReservaServices
                 string json = js.Serialize(reserva);
                 byte[] data = Encoding.UTF8.GetBytes(json);
 
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Service1.svc/Service1");
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Mensajes.svc/Mensajes");
                 req.Method = "POST";
                 req.ContentLength = data.Length;
                 req.ContentType = "application/json";

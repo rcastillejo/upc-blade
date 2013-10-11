@@ -131,7 +131,7 @@ namespace GestionReservaAppMVC.Controllers
                 int cantHoras = int.Parse(collection["CantidadHoras"]);
                 string fecInicio = (collection["FechaInicio"]);
                 string fecFin = (collection["FechaFin"]);
-                string mensaje = proxy.registrarReserva(codigoEspacio, dia, cantHoras, fecInicio, fecFin);
+                string mensaje = proxy.registrarReserva(codigoEspacio, cantHoras, fecInicio);
                 Session["Reservas"] = ListarReserva("RESERVADO");
                 Session["Mensaje"] = mensaje;
                 return RedirectToAction("Index");

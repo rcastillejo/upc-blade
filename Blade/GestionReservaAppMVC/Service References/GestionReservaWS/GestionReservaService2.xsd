@@ -167,10 +167,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="codigoEspacio" type="xs:int" />
-        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="cantHoras" type="xs:int" />
         <xs:element minOccurs="0" name="fechaInicio" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="fechaFin" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -178,6 +176,40 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="registrarReservaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizarReserva">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoEspacio" type="xs:int" />
+        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cantHoras" type="xs:int" />
+        <xs:element minOccurs="0" name="fechaInicio" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fechaFin" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizarReservaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="actualizarReservaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerReserva">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerReservaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="obtenerReservaResult" nillable="true" type="q6:Reserva" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -189,7 +221,7 @@
   <xs:element name="listarReservaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="listarReservaResult" nillable="true" type="q6:ArrayOfReserva" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GestionReservaServices.Dominio" minOccurs="0" name="listarReservaResult" nillable="true" type="q7:ArrayOfReserva" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -268,53 +268,7 @@ namespace GestionReservaServices
                 }
             }
         }
-
-
-        public string actualizarReserva(int codigo, int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin, string estado)
-        {
-
-            try
-            {
-                Reserva reserva = new Reserva()
-                {
-                    Codigo = codigo,
-                    CodigoEspacio = codigoEspacio,
-                    Dia = dia,
-                    CantidadHoras = cantHoras,
-                    FechaInicio = fechaInicio,
-                    FechaFin = fechaFin,
-                    Estado = estado
-                };
-
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string horarioJson = js.Serialize(reserva);
-                byte[] data = Encoding.UTF8.GetBytes(horarioJson);
-
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas");
-                req.Method = "PUT";
-                req.ContentLength = data.Length;
-                req.ContentType = "application/json";
-
-                var reqStream = req.GetRequestStream();
-                reqStream.Write(data, 0, data.Length);
-
-                var res = (HttpWebResponse)req.GetResponse();
-                StreamReader reader = new StreamReader(res.GetResponseStream());
-                string horarioObtenidoJson = reader.ReadToEnd();
-                return horarioObtenidoJson;
-            }
-            catch (WebException e)
-            {
-                HttpWebResponse resError = (HttpWebResponse)e.Response;//
-                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                string resultado = reader2.ReadToEnd();
-                JavaScriptSerializer js2 = new JavaScriptSerializer();
-                Error error = js2.Deserialize<Error>(resultado);
-                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
-            }
-        }
-
-
+        
         public Reserva obtenerReserva(int codigo)
         {
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/Reservas/" + codigo);
@@ -383,5 +337,70 @@ namespace GestionReservaServices
             cola.Send(mensaje);
         }
 
+
+
+        public string confirmarReserva(int codigo)
+        {
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string json = js.Serialize(codigo);
+                byte[] data = Encoding.UTF8.GetBytes(json);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/ReservasConfirmada");
+                req.Method = "PUT";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                return horarioObtenidoJson;
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
+        }
+
+        public string cancelarReserva(int codigo)
+        {
+            try
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string json = js.Serialize(codigo);
+                byte[] data = Encoding.UTF8.GetBytes(json);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:19528/Reservas.svc/ReservasCancelada");
+                req.Method = "PUT";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
+                return horarioObtenidoJson;
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
+        }
     }
 }

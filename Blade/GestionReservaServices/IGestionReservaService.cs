@@ -66,8 +66,14 @@ namespace GestionReservaServices
 
         [FaultContract(typeof(ValidationException))]
         [OperationContract]
-        string actualizarReserva(int codigo, int codigoEspacio, string dia, int cantHoras, string fechaInicio, string fechaFin, string estado);
+        string confirmarReserva(int codigo);
         
+        
+        [FaultContract(typeof(ValidationException))]
+        [OperationContract]
+        string cancelarReserva(int codigo);
+        
+
         [FaultContract(typeof(ValidationException))]
         [OperationContract]
         Reserva obtenerReserva(int codigo);

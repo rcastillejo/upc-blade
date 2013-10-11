@@ -179,23 +179,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="actualizarReserva">
+  <xs:element name="confirmarReserva">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="codigo" type="xs:int" />
-        <xs:element minOccurs="0" name="codigoEspacio" type="xs:int" />
-        <xs:element minOccurs="0" name="dia" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="cantHoras" type="xs:int" />
-        <xs:element minOccurs="0" name="fechaInicio" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="fechaFin" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="actualizarReservaResponse">
+  <xs:element name="confirmarReservaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="actualizarReservaResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="confirmarReservaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cancelarReserva">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cancelarReservaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cancelarReservaResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GestionReservaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GestionReservaService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:38930/GestionReservaService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -117,14 +117,23 @@
   <wsdl:message name="IGestionReservaService_registrarReserva_ValidationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q12:ValidationException" />
   </wsdl:message>
-  <wsdl:message name="IGestionReservaService_actualizarReserva_InputMessage">
-    <wsdl:part name="parameters" element="tns:actualizarReserva" />
+  <wsdl:message name="IGestionReservaService_confirmarReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:confirmarReserva" />
   </wsdl:message>
-  <wsdl:message name="IGestionReservaService_actualizarReserva_OutputMessage">
-    <wsdl:part name="parameters" element="tns:actualizarReservaResponse" />
+  <wsdl:message name="IGestionReservaService_confirmarReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:confirmarReservaResponse" />
   </wsdl:message>
-  <wsdl:message name="IGestionReservaService_actualizarReserva_ValidationExceptionFault_FaultMessage">
+  <wsdl:message name="IGestionReservaService_confirmarReserva_ValidationExceptionFault_FaultMessage">
     <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q13:ValidationException" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_cancelarReserva_InputMessage">
+    <wsdl:part name="parameters" element="tns:cancelarReserva" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_cancelarReserva_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cancelarReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGestionReservaService_cancelarReserva_ValidationExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q14:ValidationException" />
   </wsdl:message>
   <wsdl:message name="IGestionReservaService_obtenerReserva_InputMessage">
     <wsdl:part name="parameters" element="tns:obtenerReserva" />
@@ -133,7 +142,7 @@
     <wsdl:part name="parameters" element="tns:obtenerReservaResponse" />
   </wsdl:message>
   <wsdl:message name="IGestionReservaService_obtenerReserva_ValidationExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q14:ValidationException" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q15:ValidationException" />
   </wsdl:message>
   <wsdl:message name="IGestionReservaService_listarReserva_InputMessage">
     <wsdl:part name="parameters" element="tns:listarReserva" />
@@ -142,7 +151,7 @@
     <wsdl:part name="parameters" element="tns:listarReservaResponse" />
   </wsdl:message>
   <wsdl:message name="IGestionReservaService_listarReserva_ValidationExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q15:ValidationException" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/EspacioDeportivoServices.Excepcion" name="detail" element="q16:ValidationException" />
   </wsdl:message>
   <wsdl:portType name="IGestionReservaService">
     <wsdl:operation name="obtenerEspacio">
@@ -205,10 +214,15 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/registrarReservaResponse" message="tns:IGestionReservaService_registrarReserva_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/registrarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_registrarReserva_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="actualizarReserva">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/actualizarReserva" message="tns:IGestionReservaService_actualizarReserva_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/actualizarReservaResponse" message="tns:IGestionReservaService_actualizarReserva_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/actualizarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_actualizarReserva_ValidationExceptionFault_FaultMessage" />
+    <wsdl:operation name="confirmarReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/confirmarReserva" message="tns:IGestionReservaService_confirmarReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/confirmarReservaResponse" message="tns:IGestionReservaService_confirmarReserva_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/confirmarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_confirmarReserva_ValidationExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cancelarReserva">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/cancelarReserva" message="tns:IGestionReservaService_cancelarReserva_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGestionReservaService/cancelarReservaResponse" message="tns:IGestionReservaService_cancelarReserva_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGestionReservaService/cancelarReservaValidationExceptionFault" name="ValidationExceptionFault" message="tns:IGestionReservaService_cancelarReserva_ValidationExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="obtenerReserva">
       <wsdl:input wsaw:Action="http://tempuri.org/IGestionReservaService/obtenerReserva" message="tns:IGestionReservaService_obtenerReserva_InputMessage" />
@@ -367,8 +381,20 @@
         <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="actualizarReserva">
-      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/actualizarReserva" style="document" />
+    <wsdl:operation name="confirmarReserva">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/confirmarReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationExceptionFault">
+        <soap:fault use="literal" name="ValidationExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarReserva">
+      <soap:operation soapAction="http://tempuri.org/IGestionReservaService/cancelarReserva" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

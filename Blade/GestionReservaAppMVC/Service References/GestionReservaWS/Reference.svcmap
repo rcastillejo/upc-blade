@@ -21,13 +21,13 @@
     <MetadataSource Address="http://localhost:38930/GestionReservaService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GestionReservaService.disco" MetadataType="Disco" ID="23385ded-046c-4163-a35c-05958000a730" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?disco" />
     <MetadataFile FileName="GestionReservaService.wsdl" MetadataType="Wsdl" ID="e2f67438-b42a-4d90-a37b-c18244cc5735" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?wsdl" />
     <MetadataFile FileName="GestionReservaService1.xsd" MetadataType="Schema" ID="3629a736-e00d-46f0-abc0-b259d89c7cd4" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd2" />
     <MetadataFile FileName="GestionReservaService3.xsd" MetadataType="Schema" ID="8af5f74d-e45c-4234-9e72-584715eefa63" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd3" />
     <MetadataFile FileName="GestionReservaService2.xsd" MetadataType="Schema" ID="41b41a2b-641e-45fb-82ef-40e0299b057f" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd0" />
     <MetadataFile FileName="GestionReservaService.xsd" MetadataType="Schema" ID="9aa910cf-2b02-4ff7-82a6-57a548a64cb8" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd1" />
     <MetadataFile FileName="GestionReservaService31.xsd" MetadataType="Schema" ID="4ecfb2c9-d422-454f-8426-003692c55abe" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?xsd=xsd4" />
+    <MetadataFile FileName="GestionReservaService.disco" MetadataType="Disco" ID="23385ded-046c-4163-a35c-05958000a730" SourceId="1" SourceUrl="http://localhost:38930/GestionReservaService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

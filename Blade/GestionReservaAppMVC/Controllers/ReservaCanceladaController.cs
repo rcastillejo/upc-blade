@@ -113,9 +113,7 @@ namespace GestionReservaAppMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-                Reserva reserva = proxy.obtenerReserva(int.Parse(id));
-                reserva.Estado = "CANCELADO";
-                string mensaje =  proxy.actualizarReserva(reserva.Codigo, reserva.CodigoEspacio, reserva.Dia, reserva.CantidadHoras, reserva.FechaInicio, reserva.FechaFin, reserva.Estado);
+                string mensaje = proxy.cancelarReserva(int.Parse(id));
 
                 //Session["Mensaje"] = "La Resera ha sido cancelada exitosamente";
                 Session["Mensaje"] = mensaje;

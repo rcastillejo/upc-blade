@@ -18,7 +18,7 @@ namespace GestionReservaAppMVC.Controllers
             List<String> dias = new List<String>();
             dias.Add("Lunes" );
             dias.Add("Martes" );
-            dias.Add("Miercoles" );
+            dias.Add("Miércoles");
             dias.Add("Jueves" );
             dias.Add("Viernes" );
             return dias;

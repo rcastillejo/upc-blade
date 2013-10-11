@@ -195,5 +195,76 @@ namespace ReservasServices
             }
 
         }
+
+
+        public string ConfirmarReserva(string codigo)
+        {
+            Reserva reserva = ObtenerReserva(codigo);
+
+
+            if (reserva.Estado == Estado.CONFIRMADO)
+            {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR011",
+                            Mensaje = "La reserva ya ha sido confirmada"
+                        },
+                            HttpStatusCode.InternalServerError);
+
+            }
+
+
+            if (reserva.Estado == Estado.CANCELADO)
+            {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR010",
+                            Mensaje = "La reserva ya ha sido cancelada"
+                        },
+                            HttpStatusCode.InternalServerError);
+
+            }
+            reserva.Estado = Estado.CONFIRMADO;
+
+            Reserva reservaActualizada;
+            reservaActualizada = dao.Modificar(reserva);
+            return "La reserva confirmada exitosamente (" + reservaActualizada.Codigo + ")";
+        }
+
+        public string CancelarReserva(string codigo)
+        {
+            Reserva reserva = ObtenerReserva(codigo);
+
+            if (reserva.Estado == Estado.CANCELADO) {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR010",
+                            Mensaje = "La reserva ya ha sido cancelada"
+                        },
+                            HttpStatusCode.InternalServerError);
+            
+            }
+
+            if (reserva.Estado == Estado.CONFIRMADO)
+            {
+                throw new WebFaultException<Error>(
+                        new Error()
+                        {
+                            Codigo = "ERR011",
+                            Mensaje = "La reserva ya ha sido confirmada"
+                        },
+                            HttpStatusCode.InternalServerError);
+
+            }
+
+            reserva.Estado = Estado.CANCELADO;
+
+            Reserva reservaActualizada;
+            reservaActualizada = dao.Modificar(reserva);
+            return "La reserva cancelada exitosamente (" + reservaActualizada.Codigo + ")";
+        }
     }
 }

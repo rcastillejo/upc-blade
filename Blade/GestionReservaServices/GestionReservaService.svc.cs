@@ -9,6 +9,8 @@ using System.Web.Script.Serialization;
 using System.Net;
 using System.IO;
 using HorarioServices.Excepcion;
+using System.Messaging;
+using System.Net.Sockets;
 
 namespace GestionReservaServices
 {
@@ -61,7 +63,8 @@ namespace GestionReservaServices
             try
             {
                 //Reservar
-                Horario horario = new Horario() { 
+                Horario horario = new Horario()
+                {
                     Codigo = codigo,
                     Dia = dia,
                     HoraInicio = horaInicio,
@@ -84,14 +87,16 @@ namespace GestionReservaServices
                 StreamReader reader = new StreamReader(res.GetResponseStream());
                 string horarioObtenidoJson = reader.ReadToEnd();
                 return horarioObtenidoJson;
-            }catch (WebException e){
-                  HttpWebResponse resError = (HttpWebResponse)e.Response;//
-                  StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                  string resultado = reader2.ReadToEnd();
-                  JavaScriptSerializer js2 = new JavaScriptSerializer();
-                  Error error = js2.Deserialize<Error>(resultado);
-                  throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
-              }
+            }
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
         }
 
         public string actualizarHorario(int codigo, string dia, string horaInicio, string horaFin)
@@ -219,14 +224,14 @@ namespace GestionReservaServices
         public string registrarReserva(int codigoEspacio, int cantHoras, string fechaInicio)
         {
 
+            Reserva reserva = new Reserva()
+            {
+                CodigoEspacio = codigoEspacio,
+                CantidadHoras = cantHoras,
+                FechaInicio = fechaInicio
+            };
             try
             {
-                Reserva reserva = new Reserva()
-                {
-                    CodigoEspacio = codigoEspacio,
-                    CantidadHoras = cantHoras,
-                    FechaInicio = fechaInicio
-                };
 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string horarioJson = js.Serialize(reserva);
@@ -247,12 +252,20 @@ namespace GestionReservaServices
             }
             catch (WebException e)
             {
-                HttpWebResponse resError = (HttpWebResponse)e.Response;//
-                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
-                string resultado = reader2.ReadToEnd();
-                JavaScriptSerializer js2 = new JavaScriptSerializer();
-                Error error = js2.Deserialize<Error>(resultado);
-                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+                if (e.Status == WebExceptionStatus.ConnectFailure)
+                {
+                    //saveQueue(reserva);
+                    return "La reserva registrada exitosamente";
+                }
+                else 
+                {
+                    HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                    StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                    string resultado = reader2.ReadToEnd();
+                    JavaScriptSerializer js2 = new JavaScriptSerializer();
+                    Error error = js2.Deserialize<Error>(resultado);
+                    throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+                }
             }
         }
 
@@ -354,5 +367,21 @@ namespace GestionReservaServices
                 throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
             }
         }
+
+
+        private void saveQueue(Reserva reserva)
+        {
+            string rutaCola = @".\private$\bladeReserva";
+            if (!MessageQueue.Exists(rutaCola))
+            {
+                MessageQueue.Create(rutaCola);
+            }
+            MessageQueue cola = new MessageQueue(rutaCola);
+            Message mensaje = new Message();
+            mensaje.Label = "Reserva";
+            mensaje.Body = reserva;
+            cola.Send(mensaje);
+        }
+
     }
 }

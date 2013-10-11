@@ -18,8 +18,12 @@ namespace ReservasServices
         string RegistrarReserva(Reserva horarioACrear);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "Reservas", ResponseFormat = WebMessageFormat.Json)]
-        string ActualizarReserva(Reserva horarioACrear);
+        [WebInvoke(Method = "PUT", UriTemplate = "ReservasConfirmada", ResponseFormat = WebMessageFormat.Json)]
+        string ConfirmarReserva(string codigo);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", UriTemplate = "ReservasCancelada", ResponseFormat = WebMessageFormat.Json)]
+        string CancelarReserva(string codigo);
 
         //En caso se decida agregar variables, /dni={dni}&nom={nombre}
         [OperationContract]

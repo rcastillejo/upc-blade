@@ -15,12 +15,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfHorario" nillable="true" type="tns:ArrayOfHorario" />
-  <xs:complexType name="ArrayOfReserva">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reserva" nillable="true" type="tns:Reserva" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfReserva" nillable="true" type="tns:ArrayOfReserva" />
   <xs:complexType name="Reserva">
     <xs:sequence>
       <xs:element minOccurs="0" name="CantidadHoras" type="xs:int" />
@@ -33,4 +27,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Reserva" nillable="true" type="tns:Reserva" />
+  <xs:complexType name="ArrayOfReserva">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Reserva" nillable="true" type="tns:Reserva" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReserva" nillable="true" type="tns:ArrayOfReserva" />
 </xs:schema>

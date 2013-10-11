@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.Models.ReservaCancelada>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<GestionReservaAppMVC.GestionReservaWS.Reserva>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Cancelar
@@ -7,73 +7,65 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Cancelar Reserva</h2>
-
-    <table>
+<%--    reserva.Codigo, reserva.CodigoEspacio, reserva.Dia, reserva.CantidadHoras, reserva.FechaInicio, reserva.FechaFin, reserva.Estado
+--%>    <table>
         <tr>
             <th></th>
             <th>
-                CodReserva
+                Codigo
             </th>
             <th>
-                Sede
+                CodigoEspacio
             </th>
+             
              <th>
-                EspacioDeportivo
-            </th>
-             <th>
-                Actividad
+                Dia
             </th>
             <th>
-                Usuario
+                CantidadHoras
             </th>
             <th>
-                FechaReserva
+                FechaInicio
             </th>
             <th>
-                DiaCorto
+                FechaFin
             </th>
             <th>
-                HoraInicio
+                Estado
             </th>
-            <th>
-                HoraTermino
-            </th>
+            
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%: Html.ActionLink("Cancelar", "Cancelar", new { id=item.CodReserva})%> |
+                <%: Html.ActionLink("Cancelar", "Cancelar", new { id=item.Codigo})%> |
        <%--         <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%> |
                 <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })%>--%>
             </td>
             <td>
-                <%: item.CodReserva %>
+                <%: item.Codigo%>
             </td>
             <td>
-                <%: item.Sede.Codigo %>
+                <%: item.CodigoEspacio %>
             </td>
             <td>
-                <%: item.EspacioDeportivo.Nombre %>
+                <%: item.Dia %>
             </td>
             <td>
-                <%: item.Actividad.nomActividad %>
+                <%: item.CantidadHoras %>
+            </td>
+           
+            <td>
+                <%: item.FechaInicio %>
             </td>
             <td>
-                <%: item.Usuario.codUsuario %>
+                <%: item.FechaFin %>
             </td>
+           
             <td>
-                <%: String.Format("{0:g}", item.FechaReserva) %>
-            </td>
-            <td>
-                <%: item.DiaCorto %>
-            </td>
-            <td>
-                <%: item.HoraInicio %>
-            </td>
-            <td>
-                <%: item.HoraTermino %>
+                <%: item.Estado %>
             </td>
         </tr>
     

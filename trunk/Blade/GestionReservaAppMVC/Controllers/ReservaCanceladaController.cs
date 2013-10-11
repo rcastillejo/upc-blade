@@ -3,85 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GestionReservaAppMVC.Models;
+using GestionReservaAppMVC.GestionReservaWS;
 using GestionReservaAppMVC.Controllers;
+using System.Data.SqlClient;
+using System.ServiceModel;
 
 
-namespace GestionReservaCanceladaAppMVC.Controllers
+namespace GestionReservaAppMVC.Controllers
 {
     public class ReservaCanceladaController : Controller
     {
+
+        GestionReservaAppMVC.GestionReservaWS.GestionReservaServiceClient proxy = new GestionReservaAppMVC.GestionReservaWS.GestionReservaServiceClient();
+
         //
         // GET: /Confirmar/
 
         private List<Sede> ListarSedes()
         {
-            Sede lince = new Sede() { Codigo = 1, Nombre = "Lince" };
-            Sede sanIsidro = new Sede() { Codigo = 2, Nombre = "San Isidro" };
-            Sede sanBorja = new Sede() { Codigo = 3, Nombre = "San Borja" };
-
-            List<Sede> sedes = new List<Sede>();
-            sedes.Add(lince);
-            sedes.Add(sanIsidro);
-            sedes.Add(sanBorja);
-
-            return sedes;
+            return proxy.listarSede().ToList();
         }
 
-        private Usuario ObtenerUsuario()
-        {
-            Usuario usuario = new Usuario() { codUsuario = "U201100396", nomCompleto = "Calle Espinoza, Maria Zaira" };
+        //private Usuario ObtenerUsuario()
+        //{
+        //    Usuario usuario = new Usuario() { codUsuario = "U201100396", nomCompleto = "Calle Espinoza, Maria Zaira" };
 
-            return usuario;
-        }
+        //    return usuario;
+        //}
 
-        private List<Actividad> ListarActividad()
-        {
-            Actividad actividad1 = new Actividad() { codActividad = 1, nomActividad = "Uso del gimnasio" };
-            Actividad actividad2 = new Actividad() { codActividad = 2, nomActividad = "Uso del piscina" };
-
-
-            List<Actividad> actividades = new List<Actividad>();
-            actividades.Add(actividad1);
-            actividades.Add(actividad2);
+        //private List<Actividad> ListarActividad()
+        //{
+        //    Actividad actividad1 = new Actividad() { codActividad = 1, nomActividad = "Uso del gimnasio" };
+        //    Actividad actividad2 = new Actividad() { codActividad = 2, nomActividad = "Uso del piscina" };
 
 
-            return actividades;
-        }
+        //    List<Actividad> actividades = new List<Actividad>();
+        //    actividades.Add(actividad1);
+        //    actividades.Add(actividad2);
+
+
+        //    return actividades;
+        //}
 
 
         private List<EspacioDeportivo> ListarEspacios()
         {
-            List<Sede> sedes = ListarSedes();
-            //Sede lince = new Sede() { Codigo = 1, Nombre = "Lince" };
-            //Sede sanIsidro = new Sede() { Codigo = 2, Nombre = "San Isidro" };
-            //Sede sanBorja = new Sede() { Codigo = 3, Nombre = "San Borja" };
-
-            List<EspacioDeportivo> espacios = new List<EspacioDeportivo>();
-            espacios.Add(new EspacioDeportivo() { Codigo = 101, Nombre = "Piscina", Sede = sedes.ElementAt(0) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 102, Nombre = "Cancha Futbol", Sede = sedes.ElementAt(2) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 103, Nombre = "Cancha Tenis", Sede = sedes.ElementAt(0) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 104, Nombre = "Piscina", Sede = sedes.ElementAt(1) });
-            espacios.Add(new EspacioDeportivo() { Codigo = 105, Nombre = "Cancha Basket", Sede = sedes.ElementAt(2) });
-
-            return espacios;
+            return proxy.listarEspacio().ToList();
         }
 
-        private List<ReservaCancelada> ListarReservaCanceladas()
+        private List<Reserva> ListarReservas()
         {
-            List<Sede> sedes = ListarSedes();
-            List<EspacioDeportivo> espacioDeportivos = ListarEspacios();
-            List<Actividad> actividades = ListarActividad();
-            Usuario usuario = ObtenerUsuario();
+            List<Reserva> reservas = proxy.listarReserva().ToList();
+            List<Reserva> Reservas = null;
+            if (reservas.Count > 0)
+            {
 
-
-            List<ReservaCancelada> ReservaCanceladas = new List<ReservaCancelada>();
-            ReservaCanceladas.Add(new ReservaCancelada() { CodReserva = "01", Sede = sedes.ElementAt(0), EspacioDeportivo = espacioDeportivos.ElementAt(0), Actividad = actividades.ElementAt(0), Usuario = usuario, FechaReserva = new DateTime(2013, 9, 17, 7, 0, 0), DiaCorto = (new DateTime(2013, 9, 17, 7, 0, 0)).ToString("ddd"), HoraInicio = "07:00", HoraTermino = "08:00", Estado = new EstadoReserva() { codEstado = 0, desEstado = "Registrado" } });
-            ReservaCanceladas.Add(new ReservaCancelada() { CodReserva = "02", Sede = sedes.ElementAt(2), EspacioDeportivo = espacioDeportivos.ElementAt(1), Actividad = actividades.ElementAt(1), Usuario = usuario, FechaReserva = new DateTime(2013, 9, 12, 7, 0, 0), DiaCorto = (new DateTime(2013, 9, 12, 7, 0, 0)).ToString("ddd"), HoraInicio = "08:00", HoraTermino = "09:00", Estado = new EstadoReserva() { codEstado = 0, desEstado = "Confirmado" } });
-            ReservaCanceladas.Add(new ReservaCancelada() { CodReserva = "03", Sede = sedes.ElementAt(0), EspacioDeportivo = espacioDeportivos.ElementAt(2), Actividad = actividades.ElementAt(0), Usuario = usuario, FechaReserva = new DateTime(2013, 9, 14, 7, 0, 0), DiaCorto = (new DateTime(2013, 9, 14, 7, 0, 0)).ToString("ddd"), HoraInicio = "09:00", HoraTermino = "10:00", Estado = new EstadoReserva() { codEstado = 0, desEstado = "Registrado" } });
-            ReservaCanceladas.Add(new ReservaCancelada() { CodReserva = "04", Sede = sedes.ElementAt(1), EspacioDeportivo = espacioDeportivos.ElementAt(3), Actividad = actividades.ElementAt(1), Usuario = usuario, FechaReserva = new DateTime(2013, 9, 16, 7, 0, 0), DiaCorto = (new DateTime(2013, 9, 16, 7, 0, 0)).ToString("ddd"), HoraInicio = "07:00", HoraTermino = "08:00", Estado = new EstadoReserva() { codEstado = 0, desEstado = "Cancelado" } });
-            ReservaCanceladas.Add(new ReservaCancelada() { CodReserva = "05", Sede = sedes.ElementAt(2), EspacioDeportivo = espacioDeportivos.ElementAt(4), Actividad = actividades.ElementAt(0), Usuario = usuario, FechaReserva = new DateTime(2013, 9, 13, 7, 0, 0), DiaCorto = (new DateTime(2013, 9, 13, 7, 0, 0)).ToString("ddd"), HoraInicio = "08:00", HoraTermino = "09:00", Estado = new EstadoReserva() { codEstado = 0, desEstado = "Registrado" } });
-            return ReservaCanceladas;
+                Reservas = reservas.FindAll(delegate(Reserva reserva)
+                {
+                    if (reserva.Estado.Equals("RESERVADO"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+            }
+            return Reservas;
         }
 
         public ActionResult Index()
@@ -93,33 +82,26 @@ namespace GestionReservaCanceladaAppMVC.Controllers
                 Session["actividades"] = ListarSedes();
             if (Session["espacios"] == null)
                 Session["espacios"] = ListarEspacios();
-            if (Session["usuario"] == null)
-                Session["usuario"] = ObtenerUsuario();
+            //if (Session["usuario"] == null)
+            //    Session["usuario"] = ObtenerUsuario();
             if (Session["Reservas"] == null)
-                Session["Reservas"] = ListarReservaCanceladas();
-            List<ReservaCancelada> model = (List<ReservaCancelada>)Session["Reservas"];
+                Session["Reservas"] = ListarReservas();
+            List<Reserva> model = (List<Reserva>)Session["Reservas"];
             return View(model);
 
 
         }
 
-        private ReservaCancelada obtenerReserva(string Codreserva)
+        private Reserva obtenerReserva(string Codreserva)
         {
-            List<ReservaCancelada> reservas = (List<ReservaCancelada>)Session["Reservas"];
-            ReservaCancelada model = reservas.Single(delegate(ReservaCancelada reserva)
-            {
-                if (reserva.CodReserva == Codreserva) return true;
-                else return false;
-            });
-
-            return model;
+            return proxy.obtenerReserva(int.Parse(Codreserva));
         }
 
 
         public ActionResult Cancelar(string id)
         {
             Session["Mensaje"] = "";
-            ReservaCancelada model = obtenerReserva(id);
+            Reserva model = obtenerReserva(id);
             return View(model);
         }
         //
@@ -131,15 +113,20 @@ namespace GestionReservaCanceladaAppMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-                List<ReservaCancelada> espacios = (List<ReservaCancelada>)Session["reservas"];
-                espacios.Remove(obtenerReserva(id));
-                Session["Mensaje"] = "La Resera ha sido cancelada exitosamente";
+                Reserva reserva = proxy.obtenerReserva(int.Parse(id));
+                reserva.Estado = "CANCELADO";
+                string mensaje =  proxy.actualizarReserva(reserva.Codigo, reserva.CodigoEspacio, reserva.Dia, reserva.CantidadHoras, reserva.FechaInicio, reserva.FechaFin, reserva.Estado);
+
+                //Session["Mensaje"] = "La Resera ha sido cancelada exitosamente";
+                Session["Mensaje"] = mensaje;
+                Session["Reservas"] = ListarReservas();
                 return RedirectToAction("Index");
             }
-            catch
+
+            catch (FaultException ex)
             {
-                ViewData["Mensaje"] = "La reserva no se encuentra cancelada";
-                return View();
+                ViewData["Mensaje"] = ex.Message;
+                return RedirectToAction("Index");
             }
         }
 
@@ -209,7 +196,7 @@ namespace GestionReservaCanceladaAppMVC.Controllers
         public ActionResult Delete(string id)
         {
             Session["Mensaje"] = "";
-            ReservaCancelada model = obtenerReserva(id);
+            Reserva model = obtenerReserva(id);
             return View(model);
         }
 

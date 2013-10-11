@@ -166,34 +166,41 @@ namespace ReservasServices
 
         private void loadFromQueue()
         {
-            string rutaCola = @".\private$\bladeReserva";
-            if (!MessageQueue.Exists(rutaCola))
-            {
-                MessageQueue.Create(rutaCola);
-            }
 
-            MessageQueue cola = new MessageQueue(rutaCola);
-            int cantidadMensajes = cola.GetAllMessages().Count();
 
-            while (cantidadMensajes > 0)
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Service1.svc/Service1");
+            req.Method = "GET";
+
+            try
             {
 
-                cola.Formatter = new XmlMessageFormatter(new Type[] { typeof(Reserva) });
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string reservaObtenidoJson = reader.ReadToEnd();
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<Reserva> reservaObtendidos = js.Deserialize<List<Reserva>>(reservaObtenidoJson);
 
-                Message mensaje = cola.Receive();
-
-                Reserva reserva = (Reserva)mensaje.Body;
-                try
+                foreach (Reserva item in reservaObtendidos)
                 {
-                    RegistrarReserva(reserva);
-                }
-                catch { 
-                
+                    try
+                    {
+                        RegistrarReserva(item);
+                    }
+                    catch { 
+                    
+                    }                    
                 }
 
-                cantidadMensajes--;
             }
-
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
         }
 
 

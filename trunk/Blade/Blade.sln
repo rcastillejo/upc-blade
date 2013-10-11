@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservasServices", "Reserva
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestReservaService", "TestReservaService\TestReservaService.csproj", "{D4A868BB-71F2-4349-98FD-5E47E6B67E2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MensajeriaService", "MensajeriaService\MensajeriaService.csproj", "{8F97A305-DC01-4D0D-BAD1-BD9B3B62F8C5}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -85,6 +87,10 @@ Global
 		{D4A868BB-71F2-4349-98FD-5E47E6B67E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4A868BB-71F2-4349-98FD-5E47E6B67E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4A868BB-71F2-4349-98FD-5E47E6B67E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F97A305-DC01-4D0D-BAD1-BD9B3B62F8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F97A305-DC01-4D0D-BAD1-BD9B3B62F8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F97A305-DC01-4D0D-BAD1-BD9B3B62F8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F97A305-DC01-4D0D-BAD1-BD9B3B62F8C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -254,7 +254,7 @@ namespace GestionReservaServices
             {
                 if (e.Status == WebExceptionStatus.ConnectFailure)
                 {
-                    //saveQueue(reserva);
+                    saveQueue(reserva);
                     return "La reserva registrada exitosamente";
                 }
                 else 
@@ -325,16 +325,33 @@ namespace GestionReservaServices
 
         private void saveQueue(Reserva reserva)
         {
-            string rutaCola = @".\private$\bladeReserva";
-            if (!MessageQueue.Exists(rutaCola))
+            try
             {
-                MessageQueue.Create(rutaCola);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string json = js.Serialize(reserva);
+                byte[] data = Encoding.UTF8.GetBytes(json);
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://localhost:59131/Service1.svc/Service1");
+                req.Method = "POST";
+                req.ContentLength = data.Length;
+                req.ContentType = "application/json";
+
+                var reqStream = req.GetRequestStream();
+                reqStream.Write(data, 0, data.Length);
+
+                var res = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(res.GetResponseStream());
+                string horarioObtenidoJson = reader.ReadToEnd();
             }
-            MessageQueue cola = new MessageQueue(rutaCola);
-            Message mensaje = new Message();
-            mensaje.Label = "Reserva";
-            mensaje.Body = reserva;
-            cola.Send(mensaje);
+            catch (WebException e)
+            {
+                HttpWebResponse resError = (HttpWebResponse)e.Response;//
+                StreamReader reader2 = new StreamReader(resError.GetResponseStream());
+                string resultado = reader2.ReadToEnd();
+                JavaScriptSerializer js2 = new JavaScriptSerializer();
+                Error error = js2.Deserialize<Error>(resultado);
+                throw new FaultException<Error>(error, new FaultReason(error.Mensaje));
+            }
         }
 
 
